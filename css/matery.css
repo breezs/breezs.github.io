@@ -241,7 +241,8 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #64b3f4 0%, #00ecbc 100%);
+    /* background-image: linear-gradient(to right, #64b3f4 0%, #00ecbc 100%); */
+    background-image: linear-gradient(to right, #3fd9ff 0%,#5637c6 100%);
 }
 
 .text-color {
@@ -2172,3 +2173,4 @@ body.dark header .side-nav .menu-list .m-nav-show
 body.dark .aplayer{background: #2f3742!important;}
 body.dark img, body.dark strong {
     filter: brightness(.7);
+}
