@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="动漫插画, 可视化 前端 数据分析 电气">
+    <meta name="keywords" content="书籍, 可视化 前端 数据分析 电气">
     <meta name="description" content="向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>动漫插画 | 冰山一树Sankey</title>
+    <title>书籍 | 冰山一树Sankey</title>
 
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/favicon.png">
 
@@ -640,226 +640,200 @@
 
 </header>
 
-    <link rel="stylesheet" href="/css/gallery.css">
+    <style type="text/css">
+    /* don't remove. */
+    .about-cover {
+        height: 75vh;
+    }
+</style>
 
-<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/justifiedGallery/3.7.0/css/justifiedGallery.min.css">
+<div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                Zsの知识树
+                
+            </div>
+
+            <div class="description center-align">
+                
+                    <!-- 向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！ -->
+                    
+                    <div class="description center-align">
+                        
+                        
+                        <!-- 一言 -->
+                        
+                            <span id="hitokoto" style="font-size: 20px;"></span>
+                            <!-- 打字机 -->
+                            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+                            <script>
+                                var hitokotoContent = ''
+                                function typed(hitokotoContent) {
+                                    var typed = new Typed("#hitokoto", {
+                                        strings: [
+                                            hitokotoContent
+                                        ],
+                                        startDelay: 300,
+                                        typeSpeed: 100,
+                                        loop: false,
+                                        backSpeed: 50,
+                                        showCursor: true
+                                    });
+                                }
+                                async function hitokoto() {
+                                    hitokotoContent = await fetch('https://v1.hitokoto.cn')
+                                        .then(function (res) {
+                                            return res.json();
+                                        })
+                                        .then(function (data) {
+                                            return ('『' + data.hitokoto + '』' + '<br /> <strong>'+ '——' + '「' + data.from + '」' + '</strong>');
+                                        })
+                                        .catch(function (err) {
+                                            console.error(err);
+                                        })
+                                    await typed(hitokotoContent)
+                                }
+                                hitokoto()
+                            </script>
+                        
+                    </div>
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+</script>
+
+
+    </div>
+</div>
+
+<main class="content">
+    <div id="aboutme" class="container about-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="music-player">
+                    
+                        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+</style>
+<div class="music-player">
+    
+        <div class="title center-align">
+            <i class="fa fa-music"></i>&nbsp;&nbsp;听听音乐
+        </div>
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="7262197380"
+                   fixed='false'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   listMaxHeight='525px'
+                   list-folded='false'
+        >
+        </meting-js>
+    </div>
+</div>
+
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.iohttps://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/11.jpg')">
-    <div class="container" style="right: 0px;left: 0px;">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="brand">
-                    <h1 class="description center-align post-title">动漫插画</h1>
+                        <style>
+                        .bubbles > .particle {
+                            /*初始透明度为0*/
+                            opacity: 0;
+                            position: absolute;
+                            /*初始颜色为荧光色，透明度为0.7*/
+                            background-color: rgba(128,255,0,0.7);
+                            /*使用bubbles动画，持续时间18秒，缓慢进入，无限循环*/
+                            animation: bubbles 18s ease-in infinite;
+                            border-radius: 100%;
+                        }
+                        /*css keyframes 动画*/
+                        @keyframes bubbles {
+                            0% {
+                                opacity: 0;
+                            }
+                            5% {
+                                opacity: 1;
+                                transform: translate(0, -20%);
+                            }
+                            /*这里-8000%表示是气泡的8000%*/
+                            100% {
+                                opacity: 0;
+                                transform: translate(0, -8000%);
+                            }
+                        }
+                        </style>
+                        <!-- 这里让元素宽度100%（和页面等宽） -->
+                        <div style="width: 100%; height: 100%; position: relative; bottom: 0px;" class="particletext bubbles">
+
+
+
+                        </div>
+                        <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                        <script>
+                          function bubbles() {
+                             $.each($(".particletext.bubbles"), function(){
+                                var bubblecount = ($(this).width()/50)*10;
+                                for(var i = 0; i <= bubblecount; i++) {
+                                   var size = ($.rnd(40,80)/10);
+                                   //这里的animation-delay很重要，关系到你的特效是否看上去是连续无断层的，上一步中css是18秒，所以这一步中延迟时间就设置成$.rnd(0,180)/10)
+                                   $(this).append('<span class="particle" style="top:' + $.rnd(20,80) + '%; left:' + $.rnd(0,95) + '%;width:' + size + 'px; height:' + size + 'px;animation-delay: ' + ($.rnd(0,180)/10) + 's;"></span>');
+                                }
+                             });
+                          }
+                          jQuery.rnd = function(m,n) {
+                              m = parseInt(m);
+                              n = parseInt(n);
+                              return Math.floor( Math.random() * (n - m + 1) ) + m;
+                          }
+                          bubbles();
+                        </script>
+                        
+                    
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-
-
-<!--   "  <p class=\"photo-name\">" + photo + "</p>\n" +
-文件名先注释掉  -->
-
-<!-- 不加密写法 -->
-<!-- <div class="container">
-    <div class="photo-wrapper" >
-        <div class="waterfall" id="mygallery">
-            <a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/01.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/01.jpg"
-       alt=动漫插画/01.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/02.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/02.jpg"
-       alt=动漫插画/02.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/03.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/03.jpg"
-       alt=动漫插画/03.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/04.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/04.jpg"
-       alt=动漫插画/04.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/05.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/05.jpg"
-       alt=动漫插画/05.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/06.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/06.jpg"
-       alt=动漫插画/06.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/07.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/07.jpg"
-       alt=动漫插画/07.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/08.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/08.jpg"
-       alt=动漫插画/08.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/09.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/09.jpg"
-       alt=动漫插画/09.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/10.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/10.jpg"
-       alt=动漫插画/10.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/11.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/11.jpg"
-       alt=动漫插画/11.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/12.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/12.jpg"
-       alt=动漫插画/12.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/13.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/13.jpg"
-       alt=动漫插画/13.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/14.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/14.jpg"
-       alt=动漫插画/14.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/15.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/15.jpg"
-       alt=动漫插画/15.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/16.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/16.jpg"
-       alt=动漫插画/16.jpg>
-    </a>
-        </div>
-    </div>
-</div> -->
-
-<main class="content" >
-<!-- 加密写法 -->
-<div class="container">
-    <div class="photo-wrapper">
-        
-            <div class="waterfall" id="encrypt-blog">
-                <a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/01.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/01.jpg"
-       alt=动漫插画/01.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/02.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/02.jpg"
-       alt=动漫插画/02.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/03.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/03.jpg"
-       alt=动漫插画/03.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/04.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/04.jpg"
-       alt=动漫插画/04.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/05.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/05.jpg"
-       alt=动漫插画/05.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/06.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/06.jpg"
-       alt=动漫插画/06.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/07.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/07.jpg"
-       alt=动漫插画/07.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/08.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/08.jpg"
-       alt=动漫插画/08.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/09.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/09.jpg"
-       alt=动漫插画/09.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/10.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/10.jpg"
-       alt=动漫插画/10.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/11.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/11.jpg"
-       alt=动漫插画/11.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/12.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/12.jpg"
-       alt=动漫插画/12.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/13.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/13.jpg"
-       alt=动漫插画/13.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/14.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/14.jpg"
-       alt=动漫插画/14.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/15.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/15.jpg"
-       alt=动漫插画/15.jpg>
-    </a><a target="_blank" href="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/16.jpg"
-     class="photo-item" rel="example_group noopener"
-     data-fancybox="images">
-      <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/galleries/动漫插画/16.jpg"
-       alt=动漫插画/16.jpg>
-    </a>
-            </div>
-        
-    </div>
-</div>
-<main>
-<script src=""></script>
-<script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-<script src="https://cdn.staticfile.org/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js"></script>
-
-<script>
-  // $(".waterfall").lazyload();
-
-$("a[rel=example_group]").fancybox();
-//  不加密写法
-// $("#mygallery").justifiedGallery({margins: 5, rowHeight: 150});
-$("#encrypt-blog").justifiedGallery({margins: 5, rowHeight: 150});
-
-</script>
-
+</main>
 
     <footer class="page-footer bg-color">
     
