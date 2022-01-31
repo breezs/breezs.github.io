@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://bingshanyishu.github.io/posts/4b3500a4.html</loc>
+    
+    <lastmod>2022-01-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bingshanyishu.github.io/posts/4b2340a4.html</loc>
+    
+    <lastmod>2022-01-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bingshanyishu.github.io/posts/f3fb008f.html</loc>
+    
+    <lastmod>2022-01-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bingshanyishu.github.io/posts/4b3510a4.html</loc>
+    
+    <lastmod>2022-01-31</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://bingshanyishu.github.io/List/index.html</loc>
+    
+    <lastmod>2022-01-31</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://bingshanyishu.github.io/List/tools/index.html</loc>
     
     <lastmod>2022-01-29</lastmod>
@@ -26,13 +61,6 @@
     <loc>https://bingshanyishu.github.io/contact/index.html</loc>
     
     <lastmod>2022-01-27</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/List/index.html</loc>
-    
-    <lastmod>2022-01-24</lastmod>
     
   </url>
   
@@ -94,48 +122,6 @@
   
   <url>
     <loc>https://bingshanyishu.github.io/about/index.html</loc>
-    
-    <lastmod>2022-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/posts/4b3510a4.html</loc>
-    
-    <lastmod>2022-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/posts/19d2a4e6.html</loc>
-    
-    <lastmod>2022-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/posts/7a46f93c.html</loc>
-    
-    <lastmod>2022-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/posts/17fd92ae.html</loc>
-    
-    <lastmod>2022-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/posts/d74d8b76.html</loc>
-    
-    <lastmod>2022-01-21</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/posts/e3e08109.html</loc>
     
     <lastmod>2022-01-21</lastmod>
     
@@ -249,85 +235,43 @@
 
   <url>
     <loc>https://bingshanyishu.github.io/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://bingshanyishu.github.io/tags/PicGo/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <loc>https://bingshanyishu.github.io/tags/Blog%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingshanyishu.github.io/tags/GitHub%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <loc>https://bingshanyishu.github.io/tags/Blog/</loc>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingshanyishu.github.io/tags/Hexo/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/%E6%B8%B2%E6%9F%93%E7%BB%95%E8%BF%87/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/hexo-blog-lucky/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/Github/</loc>
-    <lastmod>2022-01-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://bingshanyishu.github.io/tags/jQuery-CSS3/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <loc>https://bingshanyishu.github.io/tags/CSS3/</loc>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://bingshanyishu.github.io/tags/%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <lastmod>2022-01-31</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bingshanyishu.github.io/tags/blog/</loc>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -335,15 +279,15 @@
 
   
   <url>
-    <loc>https://bingshanyishu.github.io/categories/%E5%8D%9A%E5%AE%A2%E7%AF%87/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <loc>https://bingshanyishu.github.io/categories/%E9%A1%B9%E7%9B%AE%E4%B9%8B%E6%A0%91/</loc>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://bingshanyishu.github.io/categories/%E5%89%8D%E7%AB%AF%E7%AF%87/</loc>
-    <lastmod>2022-01-29</lastmod>
+    <loc>https://bingshanyishu.github.io/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/</loc>
+    <lastmod>2022-01-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

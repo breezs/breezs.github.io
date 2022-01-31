@@ -305,10 +305,9 @@ header nav .brand-span {
 }
 
 header .brand-logo .logo-img {
-    /* height: 45px;
+    height: 45px;
     vertical-align: middle;
-    padding-bottom: 6px; */
-    display: none;
+    padding-bottom: 6px;
 }
 
 header .brand-logo .logo-span {
@@ -2175,4 +2174,19 @@ body.dark header .side-nav .menu-list .m-nav-show
 body.dark .aplayer{background: #2f3742!important;}
 body.dark img, body.dark strong {
     filter: brightness(.7);
+}
+
+/* 滚动条 */
+::-webkit-scrollbar-thumb {
+    background-color: #0ee1b3;
+    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+    border-radius: 3em;
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(218, 202, 255);
+    border-radius: 3em;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 10px;
 }

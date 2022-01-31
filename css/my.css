@@ -86,3 +86,9 @@ body{
         font-size: 1.4rem;
     }
 }
+
+@media only screen and (max-width: 601px) {
+    header .brand-logo .logo-img {
+        display: none;
+    }
+}
