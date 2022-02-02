@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Tableau学习Step6一如何制作炫彩地图, 可视化 前端 数据分析 电气">
+    <meta name="keywords" content="Tableau绘制热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图, 可视化 前端 数据分析 电气">
     <meta name="description" content="向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Tableau学习Step6一如何制作炫彩地图 | 冰山一树Sankey</title>
+    <title>Tableau绘制热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图 | 冰山一树Sankey</title>
 
     <link rel="icon" type="image/png" href="/favicon.png">
 
@@ -755,12 +755,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222822497.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Tableau学习Step6一如何制作炫彩地图</h1>
+                    <h1 class="description center-align post-title">Tableau绘制热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图</h1>
                 </div>
             </div>
         </div>
@@ -881,8 +881,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">Tableau学习</span>
+                            <a href="/tags/Tableau%E7%BB%98%E5%9B%BE/">
+                                <span class="chip bg-color">Tableau绘图</span>
                             </a>
                         
                     </div>
@@ -906,21 +906,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-02
+                    2022-02-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-02-02
+                    2022-02-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.4k
                 </div>
                 
 
@@ -945,138 +945,84 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Tableau学习Step6——如何制作炫彩地图"><a href="#Tableau学习Step6——如何制作炫彩地图" class="headerlink" title="Tableau学习Step6——如何制作炫彩地图"></a>Tableau学习Step6——如何制作炫彩地图</h1><h2 id="一-统计地图概述"><a href="#一-统计地图概述" class="headerlink" title="一.统计地图概述"></a>一.统计地图概述</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/0334cd7ba852a4728eaf38ecadb0b048.png" alt="image-20210910173045599"></p>
-<h3 id="1-1-统计地图的基本概念"><a href="#1-1-统计地图的基本概念" class="headerlink" title="1.1 统计地图的基本概念"></a>1.1 统计地图的基本概念</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/28d7cb502e6db1c5a8d9a0cfcebe5a68.png" alt="image-20220111113405011"></p>
-<ul>
-<li>统计地图的本质:数据的正确对应<ul>
-<li>将数据信息和地理位置严格对应起来,并加以图形呈现</li>
-</ul>
-</li>
-<li>如何将数据和地理位置对应起来?<ul>
-<li>将数据信息和其所在的地理点/地理区域直接关联起来</li>
-<li>将相应信息用适当的图形元素在相应地理点/地理区域加以表示</li>
-</ul>
-</li>
-<li>常见的数据对应方式<ul>
-<li>·统计数据和地图数据分表/库存储,用地名关键字将两个数据表进行连接</li>
-<li>·当使用可识别的标准地名关键字时, Tableau中这种连接操作是自动进行的<ul>
-<li>·例:“中国”、“ China”均可识别,但“三哥”、“巴铁”就会让 Tableau-脸懵圈</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-地图地图的优劣"><a href="#1-2-地图地图的优劣" class="headerlink" title="1.2 地图地图的优劣"></a>1.2 地图地图的优劣</h3><p>合理运用地图展现数据关系和大小。</p>
-<p>同样是展示总销售额和总订单数</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/8055b65f15454c6b6ff367895d8dac46.png" alt="image-20220111113623180"></p>
-<h2 id="二-标准统计地图的绘制"><a href="#二-标准统计地图的绘制" class="headerlink" title="二.标准统计地图的绘制"></a>二.标准统计地图的绘制</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/076a8fc18239763f3f79f7217d57313d.png" alt="image-20210910173128549"></p>
-<h3 id="2-1-比例符号地图"><a href="#2-1-比例符号地图" class="headerlink" title="2.1 比例符号地图"></a>2.1 比例符号地图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/6f8448fa97d3c5ad504758549a605f77.png" alt="image-20220111113750939"></p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/fa01ea9ae4699635b11a5d28b4ea37ca.png" alt="image-20220111115235129"></p>
-<h3 id="2-2-填充地图"><a href="#2-2-填充地图" class="headerlink" title="2.2 填充地图"></a>2.2 填充地图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/9761bcfdc2f6b5f63e9d4837022e0c62.png" alt="image-20220111115303051"></p>
-<p><img src="https://img-blog.csdnimg.cn/f282a5f3a9de4fa2a7b566afb651cdf6.png" alt="image-20220111114143079"></p>
-<h3 id="2-3-点分布图"><a href="#2-3-点分布图" class="headerlink" title="2.3 点分布图"></a>2.3 点分布图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/06052411f46951be92628eaaae9b832c.png" alt="image-20220111115325660"></p>
-<h3 id="2-4-热力图"><a href="#2-4-热力图" class="headerlink" title="2.4 热力图"></a>2.4 热力图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/96df8d3ca3a42de08c8c6300f1b39ce3.png" alt="image-20220111115346068"></p>
-<h3 id="2-5-蜘蛛图"><a href="#2-5-蜘蛛图" class="headerlink" title="2.5 蜘蛛图"></a>2.5 蜘蛛图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/a352a0fe3882eb484e3099906d442557.png" alt="image-20220111115435297"></p>
-<h3 id="2-6-动态路径图"><a href="#2-6-动态路径图" class="headerlink" title="2.6 动态路径图"></a>2.6 动态路径图</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/cbbfa69aee549d339035f9d91837cfb7.png" alt="image-20220111115501192"></p>
-<h3 id="2-7-复合统计地图"><a href="#2-7-复合统计地图" class="headerlink" title="2.7 复合统计地图"></a>2.7 复合统计地图</h3><p>将统计地图与其他统计图层相叠加</p>
-<ul>
-<li>统计地图显示主要信息</li>
-<li>其他统计图显示主要信息二<ul>
-<li>最常用的为饼图,其余图形种类非常少见</li>
-</ul>
-</li>
-<li>绘制要点<ul>
-<li>以双轴图的方式进行图层的叠加</li>
-<li>·进行图层的配色调整,使关键信息更加突出</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-8-地图的编辑和设定"><a href="#2-8-地图的编辑和设定" class="headerlink" title="2.8 地图的编辑和设定"></a>2.8 地图的编辑和设定</h3><ul>
-<li>搜索框、界面操作钮等的使用<ul>
-<li>显示比例尺</li>
-</ul>
-</li>
-<li>图形背景的深浅设置<ul>
-<li>冲蚀效果</li>
-</ul>
-</li>
-<li>图层和数据层<ul>
-<li>图层可供用户进行效果微调</li>
-<li>·数据层目前基本上是提供美国范围的数据</li>
-</ul>
-</li>
-</ul>
-<h2 id="三-突破默认的地图框架"><a href="#三-突破默认的地图框架" class="headerlink" title="三.突破默认的地图框架"></a>三.突破默认的地图框架</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/6bf3209eaa6f79b7537d485b307eb131.png" alt="image-20220111115924195"></p>
-<h3 id="3-1-默认无法满足要求"><a href="#3-1-默认无法满足要求" class="headerlink" title="3.1 默认无法满足要求"></a>3.1 默认无法满足要求</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/7c003e90ea88471b5fc45e1d556211bd.png" alt="image-20210910215615884"></p>
-<h3 id="3-2-如何处理非标准名称"><a href="#3-2-如何处理非标准名称" class="headerlink" title="3.2 如何处理非标准名称"></a>3.2 如何处理非标准名称</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/de47081a3d4fd95c4d18bfc10c859a11.png" alt="image-20210910220642518"></p>
-<h3 id="3-3-自定义地理信息数据"><a href="#3-3-自定义地理信息数据" class="headerlink" title="3.3 自定义地理信息数据"></a>3.3 自定义地理信息数据</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/2324915b7510b5b975d0bea316545e44.png" alt="image-20210910221321146"></p>
-<h3 id="3-4-基于已有地图添加新层级"><a href="#3-4-基于已有地图添加新层级" class="headerlink" title="3.4 基于已有地图添加新层级"></a>3.4 基于已有地图添加新层级</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/eae42c542598755fe4ae81448d2f7da7.png" alt="image-20220111115830032"></p>
-<p>1</p>
-<h3 id="3-5-基于已有地理单元添加新的地理分层"><a href="#3-5-基于已有地理单元添加新的地理分层" class="headerlink" title="3.5 基于已有地理单元添加新的地理分层"></a>3.5 基于已有地理单元添加新的地理分层</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/cdb8b019bfd6e74ceb6cf714a069a7c4.png" alt="image-20220111130147103"></p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/4e3d55c3ff93b8779752d7184589a5c2.png" alt="image-20210911102527099"></p>
-<h3 id="3-6-使用嵌套地图自动显示省市详情"><a href="#3-6-使用嵌套地图自动显示省市详情" class="headerlink" title="3.6 使用嵌套地图自动显示省市详情"></a>3.6 使用嵌套地图自动显示省市详情</h3><p><img src="https://img-blog.csdnimg.cn/0008d95196d345559ff0e68bed6911fc.png"></p>
-<h3 id="3-7-如何计算两点间的距离"><a href="#3-7-如何计算两点间的距离" class="headerlink" title="3.7 如何计算两点间的距离"></a>3.7 如何计算两点间的距离</h3><p>数据格式整理</p>
-<p>要求经纬度已在数据集中显式存在<br>以内连接方式关联两两数据点(并去除无意义的同点关联)</p>
-<p>将原数据源中的数据取<strong>并集</strong>，连接方式为**&lt;&gt;**</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/9183a5bbf1d0f6121bbdb05df377c0a2.png" alt="image-20220111132524419"></p>
-<p><strong>在数据源中计算出两两点间距离</strong><br>用大圆距离公式计算实际距离(使用地球的平均半径)</p>
-<p>创建计算字段：<strong>距离</strong>，将<strong>距离变量设置为维度</strong>,公式如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">3959* ACOS( SIN(RADIANS([lat]))*SIN(RADIANS([lat2]))+
-COS(RADIANS([lat]))*COS(RADIANS([lat2]))*
-COS(RADIANS([long2])-RADIANS([long])))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+                <h1 id="Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图"><a href="#Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图" class="headerlink" title="Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图"></a>Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图</h1><h2 id="一-热图"><a href="#一-热图" class="headerlink" title="一.热图"></a>一.热图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911164314869.png" alt="image-20210911164314869"></p>
+<p><strong>例子：示例超市</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911213634687.png" alt="image-20210911213634687">可以通过更改颜色来改变颜色的显示情况</p>
+<h2 id="二-日历-日历图"><a href="#二-日历-日历图" class="headerlink" title="二.日历/日历图"></a>二.日历/日历图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911221412816.png" alt="image-20210911221412816"></p>
+<p>数据源：示例超市</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911223231847.png" alt="image-20210911223231847"></p>
+<p>按要求修改日期的格式</p>
+<h2 id="三-人口金字塔-旋风图"><a href="#三-人口金字塔-旋风图" class="headerlink" title="三.人口金字塔/旋风图"></a>三.人口金字塔/旋风图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111150840162-16437860886286.png" alt="image-20220111150840162"></p>
+<p>数据源：绘图数据</p>
+<p>由于数据源中含有85岁以上的人，不能之间判断。这里可将Age转换为字符串，然后创建计算字段，命名为</p>
+<pre class="line-numbers language-none"><code class="language-none">年龄=if [Age]='85+' THEN 85 ELSE INT([Age])
+END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="https://img-blog.csdnimg.cn/img_convert/cb67fcda3368691df46f2089395eb411.png" alt="image-20220111134324029"></p>
-<p><strong>在地图中显示出两两点间距离</strong><br>并设定为线标记下的颜色，修改标签显示至合适方式</p>
-<p>将距离添加到<strong>标签</strong>，同时设置标签的只显示距离</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/5cb2816a07ff5729b2e18eea2c376b74.png" alt="image-20220111134603369"></p>
-<p>双轴，将国际名称添加到标签，合并双轴</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/39ed8ba4c4f01fd9e3a0f30c1213486e.png" alt="image-20220111134705963"></p>
-<p>为了更好交互，还可将<strong>国际名称（直辖市名称1）拖到工具提示</strong>，其设置如下</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/3b3443258b9604dfa116dc4c5aa1a82e.png" alt="image-20220111135136469"></p>
-<h2 id="四-炫彩地图DIY"><a href="#四-炫彩地图DIY" class="headerlink" title="四.炫彩地图DIY"></a>四.炫彩地图DIY</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/9b36199f5e17317b6b64083d3a357555.png" alt="image-20210910173235507"></p>
-<h3 id="4-1-使用静态背景图片"><a href="#4-1-使用静态背景图片" class="headerlink" title="4.1 使用静态背景图片"></a>4.1 使用静态背景图片</h3><ul>
-<li>截取符合需求的图源为静态图片<ul>
-<li>谷歌地图</li>
-<li>Open Street开源地图</li>
-</ul>
-</li>
-<li>测量四个端点的GPS坐标,以取得相应的横纵轴尺度范围</li>
-<li>设定相应图片为地图的背景图像,设定纵横轴相对应的变量,以及变量的取值范围</li>
-<li>取消背景地图的显示</li>
-<li>根据显示效果调整纵横轴尺度,以使数据和背景地图准确匹配</li>
-</ul>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/cb54381d3b28e1c94da2a82897e29aef.png" alt="image-20210911132238298"></p>
-<p>（1）截取背景图片</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/07f8ba0f4a094164b58af871e1a17e43.png" alt="image-20220111135513418"></p>
-<p>（2）取左上角与右下角经纬度坐标</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/34f07a03d0853b772f1c178c2345b17f.png" alt="image-20210911132100325"></p>
-<p>（3）载入图片</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/e92687f66d863160797c632cf3e97822.png" alt="image-20210911131958349"></p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/663699a0d14e6ce221f2142b7f4fdc5b.png" alt="image-20210911132109193"></p>
-<h3 id="4-2-使用自定义图片"><a href="#4-2-使用自定义图片" class="headerlink" title="4.2 使用自定义图片"></a>4.2 使用自定义图片</h3><p>方法同4.1，不断调试</p>
-<p><img src="https://img-blog.csdnimg.cn/img_convert/cc169da0744b202ae86fff41ada45c30.png" alt="image-20220111135532519"></p>
-<h3 id="4-3-绘制多边形地图与如何采集"><a href="#4-3-绘制多边形地图与如何采集" class="headerlink" title="4.3 绘制多边形地图与如何采集"></a>4.3 绘制多边形地图与如何采集</h3><ul>
-<li>采集封闭多边形各个连续端点的经纬度坐标<ul>
-<li>同时记录各连续端点的绘制顺序</li>
-</ul>
-</li>
-<li>如果同一区域被分为多个独立多边形,则分别绘制,并取相同名称/D号即可<ul>
-<li>为便于管理,应当为每个区域提供不同的subd</li>
-</ul>
-</li>
-<li>将经度、纬度变量指定为正确的地理角色</li>
-<li>要求绘制多边形图形,并将绘制顺序变量设定为路径<ul>
-<li>名称D变量用于区分不同地理区域, subid则辅助绘制不同的区域</li>
-</ul>
-</li>
-<li>推荐在线工具<ul>
-<li><a target="_blank" rel="noopener" href="https://drawingtool.powertoolsfortableau.com/">https://drawingtool.powertoolsfortableau.com</a></li>
-<li><a target="_blank" rel="noopener" href="https://tableaudraw.com/">https://tableaudraw.com/</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="4-使用外部地理空间文件"><a href="#4-使用外部地理空间文件" class="headerlink" title="4.使用外部地理空间文件"></a>4.使用外部地理空间文件</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/ed3bcbf454c661885b2ad597d361e0b8.png" alt="image-20210911154426641"></p>
-<h3 id="5-使用在线地图服务"><a href="#5-使用在线地图服务" class="headerlink" title="5.使用在线地图服务"></a>5.使用在线地图服务</h3><p><img src="https://img-blog.csdnimg.cn/img_convert/5c1673c5973032673955c8152f61f1fa.png" alt="image-20210911154959763"></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111153416842-16437860909287.png" alt="image-20220111153416842"></p>
+<p>将<strong>年龄</strong>创建数据桶</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111153725596-16437860926858.png" alt="image-20220111153725596"></p>
+<p>再分别创建以下字段</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111154017348-16437860943029.png" alt="image-20220111154017348"></p>
+<p>分别拖字段，以及倒序轴，设置颜色</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111165622853-164378609602610.png" alt="image-20220111165622853"></p>
+<h2 id="四-标靶图"><a href="#四-标靶图" class="headerlink" title="四. 标靶图"></a>四. 标靶图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912215950728.png" alt="image-20210912215950728"></p>
+<h3 id="4-1-数据源-示例超市-销售目标"><a href="#4-1-数据源-示例超市-销售目标" class="headerlink" title="4.1 数据源:示例超市+销售目标"></a>4.1 数据源:示例超市+销售目标</h3><p>从Tableau【帮助】——【示例工作簿】——【示例超市】加载</p>
+<h3 id="4-2-步骤："><a href="#4-2-步骤：" class="headerlink" title="4.2 步骤："></a>4.2 步骤：</h3><p>（1）新建一个工作簿</p>
+<p>（2）把【销售额】拖到列这一栏，把【订单日期】拖到行这一栏，同时钻取日期为年和月，之后再把【细分】拖到行这一栏（为了图表美观，可【订单日期】拖到<strong>筛选器</strong>，筛选任意一年的时间，本图表筛选日期为<strong>年——2016</strong>，</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912221532086.png" alt="image-20210912221532086"></p>
+<p>（3）切换数据源为销售目标，把销售目标（注意：这里是度量值的销售目标，而非数据源名）</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912221729733.png" alt="image-20210912221729733"></p>
+<p>（4）为图添加趋势线，点击分析，将参考线拖到单元格，并把值改为【总和(销售目标)】</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912221958524.png" alt="image-20210912221958524"></p>
+<p>(5)切换到示例-超市数据源，将度量值【销售额是否超过目标？】拖入到<strong>标记</strong>中的<strong>颜色</strong>,此时图表按是否达到目标有不同的颜色，若没有该度量值，可按下列公式计算</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912222504824.png" alt="image-20210912222504824"></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912222359589.png" alt="image-20210912222359589"></p>
+<p>（6）为了在与图表互动时能够显示差值，可把【销售额】拖入到<strong>详细信息</strong>，再把公式编辑成如下第一张图所示。之后点击工具提示，把内容改为如第二张图所示</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223017469.png" alt="image-20210912223017469"></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223359812.png" alt="image-20210912223359812"></p>
+<p>（7）点击<strong>分析</strong>，把<strong>分布区间</strong>拖入到弹出的窗口的<strong>单元格</strong>中，值可设为40,60,80,填充选取一个颜色，，选择向下填充复选框。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223809345.png" alt="image-20210912223809345"></p>
+<p>（8）结果——（可按自己要求更改图表配色）</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223940195.png" alt="image-20210912223940195"></p>
+<h2 id="五-凹凸图"><a href="#五-凹凸图" class="headerlink" title="五. 凹凸图"></a>五. 凹凸图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913113257930.png" alt="image-20210913113257930"></p>
+<h3 id="5-1-数据源"><a href="#5-1-数据源" class="headerlink" title="5.1 数据源"></a>5.1 数据源</h3><p>系统自带示例超市</p>
+<h3 id="5-2-步骤"><a href="#5-2-步骤" class="headerlink" title="5.2 步骤"></a>5.2 步骤</h3><p>（1）打开示例超市数据源</p>
+<p>（2）将【订单日期】拖到列这一栏，把【销售额】拖到行这一栏</p>
+<p>把【子类别】托到标记中的<strong>颜色</strong>。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913113908536.png" alt="image-20210913113908536"></p>
+<p>（3）把【销售额】添加快速表计算，之后再编辑快速表计算，<strong>计算依据</strong>改为特定维度，只勾选【子类别】复选框，大致可以得到凹凸图雏形。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913114058304.png" alt="image-20210913114058304"></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913114244066.png" alt="image-20210913114244066"></p>
+<p>（4）按住CTRL键把销售额往后拖，即复制销售额这一栏，之后把第二个<strong>总和（销售额）</strong>改为<strong>圆</strong>，并点击<strong>标签</strong>，勾选<strong>显示标记标签</strong>和<strong>允许标签覆盖其他标记</strong>两个复选框,把对齐中的<strong>水平与垂直</strong>均设置为<strong>居中</strong><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913115428668.png" alt="image-20210913115428668"></p>
+<p>（5)之后点击行这一栏的第二个【销售额】的小三角，然后弹出的对话框点击<strong>双轴</strong>，可得到基本图形了，但仍有不足，线与圆之间不对称，这是由于两个轴不同步引起的。此时可对<strong>右侧坐标轴鼠标右键</strong>，点击<strong>同步轴</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913115920574.png" alt="image-20210913115920574"></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120100145.png" alt="image-20210913120100145"></p>
+<p>（6）<strong>调整坐标刻度为倒序</strong>，此时排序为1的排到最上面，之后由于坐标轴在凹凸图中没有意义，可把坐标轴隐藏掉。分别对两个轴鼠标右键，去掉<strong>显示标题的勾</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120324077.png" alt="image-20210913120324077"></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120457532.png" alt="image-20210913120457532"></p>
+<p>（7）结果</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120722634.png" alt="image-20210913120722634"></p>
+<h2 id="六-帕累托图"><a href="#六-帕累托图" class="headerlink" title="六. 帕累托图"></a>六. 帕累托图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913221812167.png" alt="image-20210913221812167"></p>
+<p><strong>数据源——示例超市</strong></p>
+<h3 id="6-1-基础版"><a href="#6-1-基础版" class="headerlink" title="6.1 基础版"></a>6.1 基础版</h3><p>（1）连接数据源，新建一个工作簿</p>
+<p>（2）将【子类别】拖到列这一栏，将【销售额】拖到行这一栏，之后对【销售额】进行降序排序，即可得到基本的条形图</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222419420.png" alt="image-20210913222419420"></p>
+<p>（3）将按住CTRL的同时把行上的【销售额】往后拖一个，即复制销售额，之后再对第二个销售额快速表计算——汇总</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222822497.png" alt="image-20210913222822497"></p>
+<p>（4）将第二个【销售额】的标记改为<strong>线</strong>，，之后编辑表计算，在弹出来的对话框中计算依据勾选特定维度，最下面勾选添加辅助计算复选框，在新的辅助计算中<strong>从属计算类型</strong>选择<strong>合计百分比</strong>，<strong>计算依据</strong>改为<strong>特定维度</strong><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913223442577.png" alt="image-20210913223442577"></p>
+<p>（5）合并双轴，并把第一个【销售额】的标记改为<strong>条形图</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913224123858.png" alt="image-20210913224123858"></p>
+<p>（6）可为图表添加常量线，便于决策，最后图表如果颜色不美观，还可更改图表颜色——点击<strong>标记下的”全部“中的颜色</strong>即可。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913224409214.png" alt="image-20210913224409214"></p>
+<h3 id="6-2-复杂版"><a href="#6-2-复杂版" class="headerlink" title="6.2 复杂版"></a>6.2 复杂版</h3><p>复杂版，即，将横坐标改为百分比递增，而不再是子类别</p>
+<p>（1)在基础版的图形上进行更改，将【子类别】拖到标记下的全部的<strong>详细信息</strong>中，同时将列这一栏的<strong>度量</strong>改为<strong>计数（不同）</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913225254520.png" alt="image-20210913225254520"></p>
+<p>（2）对列这一栏的子类别进行添加表计算，主要计算类型改为<strong>汇总</strong>，计算依据改为<strong>特定维度</strong>，排序顺序改为<strong>自定义排序</strong>，选择【销售额】，<strong>降序</strong>排序，并勾选<strong>添加辅助计算</strong>复选框，从属计算类型改为<strong>合计百分比</strong>，计算依据改为<strong>特定维度</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913225709312.png" alt="image-20210913225709312"></p>
+<p>（3）也可为图表添加参考线</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913231545913.png" alt="image-20210913231545913"></p>
+<p>(4)结果</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913231622180.png" alt="image-20210913231622180"></p>
 
                 
             </div>
@@ -1103,7 +1049,7 @@ COS(RADIANS([long2])-RADIANS([long])))<span aria-hidden="true" class="line-numbe
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://bingshanyishu.github.io/posts/220202af.html">https://bingshanyishu.github.io/posts/220202af.html</a>
+                    <a href="https://bingshanyishu.github.io/posts/220202ba.html">https://bingshanyishu.github.io/posts/220202ba.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1141,8 +1087,8 @@ COS(RADIANS([long2])-RADIANS([long])))<span aria-hidden="true" class="line-numbe
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">Tableau学习</span>
+                                <a href="/tags/Tableau%E7%BB%98%E5%9B%BE/">
+                                    <span class="chip bg-color">Tableau绘图</span>
                                 </a>
                             
                         </div>
@@ -1618,18 +1564,21 @@ new Valine({
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/220202ba.html">
+                <a href="/posts/220203ab.html">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222822497.png" class="responsive-img" alt="Tableau绘制热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图">
+                        <img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20211004135308267.png" class="responsive-img" alt="Tableau绘制K线图、布林线、圆环图、雷达图">
                         
-                        <span class="card-title">Tableau绘制热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图</span>
+                        <span class="card-title">Tableau绘制K线图、布林线、圆环图、雷达图</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文就Tableau如何绘制热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图等重点图形进行论述
+                            <!--  -->
+                            Tableau绘制K线图、布林线、圆环图、雷达图一. K线图
+1.1 导入数据源
+1.2 拖拽字段将【日期】托到列这一栏，并将其改为年/月/
                         
                     </div>
                     <div class="publish-info">
@@ -1666,19 +1615,24 @@ new Valine({
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/220202ae.html">
+                <a href="/posts/220202af.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/1.jpg" class="responsive-img" alt="Tableau学习Step5一表计算、详细级别表达式、动作、外接python">
+                        <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/12.jpg" class="responsive-img" alt="Tableau学习Step6一如何制作炫彩地图">
                         
-                        <span class="card-title">Tableau学习Step5一表计算、详细级别表达式、动作、外接python</span>
+                        <span class="card-title">Tableau学习Step6一如何制作炫彩地图</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            表计算、详细级别表达式、动作、外接python,什么是表计算,是特殊类型的计算字段
+                            <!--  -->
+                            Tableau学习Step6——如何制作炫彩地图一.统计地图概述
+1.1 统计地图的基本概念
+
+统计地图的本质:数据的正确对应
+将数据信息和
                         
                     </div>
                     <div class="publish-info">
