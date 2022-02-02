@@ -42,141 +42,10 @@
     </script>
 
 
-<style type="text/css" lang="css">
-    #loading-container{
-        position: fixed;
-        top: 0;
-        left: 0;
-        min-height: 100vh;
-        width: 100vw;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background: #FFF;
-        text-align: center;
-        /* loader页面消失采用渐隐的方式*/
-        -webkit-transition: opacity 1s ease;
-        -moz-transition: opacity 1s ease;
-        -o-transition: opacity 1s ease;
-        transition: opacity 1s ease;
-    }
-    .loading-image{
-        width: 120px;
-        height: 50px;
-        transform: translate(12%);
-    }
-
-    .loading-image div:nth-child(2) {
-        -webkit-animation: pacman-balls 1s linear 0s infinite;
-        animation: pacman-balls 1s linear 0s infinite
-    }
-
-    .loading-image div:nth-child(3) {
-        -webkit-animation: pacman-balls 1s linear .33s infinite;
-        animation: pacman-balls 1s linear .33s infinite
-    }
-
-    .loading-image div:nth-child(4) {
-        -webkit-animation: pacman-balls 1s linear .66s infinite;
-        animation: pacman-balls 1s linear .66s infinite
-    }
-
-    .loading-image div:nth-child(5) {
-        -webkit-animation: pacman-balls 1s linear .99s infinite;
-        animation: pacman-balls 1s linear .99s infinite
-    }
-
-   .loading-image div:first-of-type {
-        width: 0;
-        height: 0;
-        border: 25px solid #49b1f5;
-        border-right-color: transparent;
-        border-radius: 25px;
-        -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
-        animation: rotate_pacman_half_up .5s 0s infinite;
-    }
-    .loading-image div:nth-child(2) {
-        width: 0;
-        height: 0;
-        border: 25px solid #49b1f5;
-        border-right-color: transparent;
-        border-radius: 25px;
-        -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
-        animation: rotate_pacman_half_down .5s 0s infinite;
-        margin-top: -50px;
-    }
-    @-webkit-keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
-
-    @keyframes rotate_pacman_half_up {0% {transform: rotate(270deg)}50% {transform: rotate(1turn)}to {transform: rotate(270deg)}}
-
-    @-webkit-keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
-
-    @keyframes rotate_pacman_half_down {0% {transform: rotate(90deg)}50% {transform: rotate(0deg)}to {transform: rotate(90deg)}}
-
-    @-webkit-keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
-
-    @keyframes pacman-balls {75% {opacity: .7}to {transform: translate(-100px, -6.25px)}}
-
-
-    .loading-image div:nth-child(3),
-    .loading-image div:nth-child(4),
-    .loading-image div:nth-child(5),
-    .loading-image div:nth-child(6){
-        background-color: #49b1f5;
-        width: 15px;
-        height: 15px;
-        border-radius: 100%;
-        margin: 2px;
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        transform: translateY(-6.25px);
-        top: 25px;
-        left: 100px;
-    }
-    .loading-text{
-        margin-bottom: 20vh;
-        text-align: center;
-        color: #08b7fc;
-        font-size: 2rem;
-        box-sizing: border-box;
-        padding: 0 10px;
-        text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    @media only screen and (max-width: 500px) {
-         .loading-text{
-            font-size: 1.5rem;
-         }
-    }
-    .fadeout {
-        opacity: 0;
-        filter: alpha(opacity=0);
-    }
-    /* logo出现动画 */
-    @-webkit-keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);transform:translate3d(0,-100%,0)}100%{opacity:1;-webkit-transform:none;transform:none}}
-    @keyframes fadeInDown{0%{opacity:0;-webkit-transform:translate3d(0,-100%,0);}}
- </style>
- <script>
-(function () {
-    const loaded = function(){
-       setTimeout(function(){
-            const loader = document.getElementById("loading-container");
-            loader.className="fadeout" ;//使用渐隐的方法淡出loading page
-            // document.getElementById("body-wrap").style.display="flex";
-            setTimeout(function(){
-                loader.style.display="none";
-            },1000); 
-        },1000);//强制显示loading page 1s  
-    };
-    loaded();
-})()
- </script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="冰山一树Sankey" type="application/atom+xml">
-
+<meta name="generator" content="Hexo 5.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="冰山一树Sankey" type="application/atom+xml">
 </head>
-
 
 
    <style>
@@ -191,16 +60,243 @@
 
 
 
- <div id="loading-container">
-      <p class="loading-text">玩命加载中 . . . </p> 
-     <div class="loading-image">
-         <div></div>
-         <div></div>
-         <div></div>
-         <div></div> 
-         <div></div>
-     </div>
- </div><body>
+<body>
+      
+      
+    
+    <script>
+        window.addEventListener('load', function () {
+            const loader = document.getElementById("loading-box");
+            document.body.style.overflow = 'auto';
+            document.getElementById('loading-box').classList.add("loading");
+            setTimeout(function () {
+                loader.style.display = "none";
+            }, 1000);     //1秒后，页面消失
+        }, false)
+
+    </script>
+
+    <div id="loading-box">
+        <div class="loading-text">加载中 . . . </div>
+        <div class="loading-image">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+    <style type="text/css" lang="css">
+       #loading-box.loading {
+            opacity: 0;
+            filter: alpha(opacity=0);
+            /* display: none;   */
+            /* z-index: -1000; */
+
+        }
+        #loading-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-height: 100vh;
+            width: 100vw;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #FFF;
+            text-align: center;
+            /* loader页面消失采用渐隐的方式*/
+            -webkit-transition: opacity 1s ease;
+            -moz-transition: opacity 1s ease;
+            -o-transition: opacity 1s ease;
+            transition: opacity 1s ease;
+        }
+
+        .loading-image {
+            width: 120px;
+            height: 50px;
+            transform: translate(12%);
+        }
+
+        .loading-image div:nth-child(2) {
+            -webkit-animation: pacman-balls 1s linear 0s infinite;
+            animation: pacman-balls 1s linear 0s infinite
+        }
+
+        .loading-image div:nth-child(3) {
+            -webkit-animation: pacman-balls 1s linear .33s infinite;
+            animation: pacman-balls 1s linear .33s infinite
+        }
+
+        .loading-image div:nth-child(4) {
+            -webkit-animation: pacman-balls 1s linear .66s infinite;
+            animation: pacman-balls 1s linear .66s infinite
+        }
+
+        .loading-image div:nth-child(5) {
+            -webkit-animation: pacman-balls 1s linear .99s infinite;
+            animation: pacman-balls 1s linear .99s infinite
+        }
+
+        .loading-image div:first-of-type {
+            width: 0;
+            height: 0;
+            border: 25px solid #49b1f5;
+            border-right-color: transparent;
+            border-radius: 25px;
+            -webkit-animation: rotate_pacman_half_up .5s 0s infinite;
+            animation: rotate_pacman_half_up .5s 0s infinite;
+        }
+
+        .loading-image div:nth-child(2) {
+            width: 0;
+            height: 0;
+            border: 25px solid #49b1f5;
+            border-right-color: transparent;
+            border-radius: 25px;
+            -webkit-animation: rotate_pacman_half_down .5s 0s infinite;
+            animation: rotate_pacman_half_down .5s 0s infinite;
+            margin-top: -50px;
+        }
+
+        @-webkit-keyframes rotate_pacman_half_up {
+            0% {
+                transform: rotate(270deg)
+            }
+
+            50% {
+                transform: rotate(1turn)
+            }
+
+            to {
+                transform: rotate(270deg)
+            }
+        }
+
+        @keyframes rotate_pacman_half_up {
+            0% {
+                transform: rotate(270deg)
+            }
+
+            50% {
+                transform: rotate(1turn)
+            }
+
+            to {
+                transform: rotate(270deg)
+            }
+        }
+
+        @-webkit-keyframes rotate_pacman_half_down {
+            0% {
+                transform: rotate(90deg)
+            }
+
+            50% {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(90deg)
+            }
+        }
+
+        @keyframes rotate_pacman_half_down {
+            0% {
+                transform: rotate(90deg)
+            }
+
+            50% {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(90deg)
+            }
+        }
+
+        @-webkit-keyframes pacman-balls {
+            75% {
+                opacity: .7
+            }
+
+            to {
+                transform: translate(-100px, -6.25px)
+            }
+        }
+
+        @keyframes pacman-balls {
+            75% {
+                opacity: .7
+            }
+
+            to {
+                transform: translate(-100px, -6.25px)
+            }
+        }
+
+
+        .loading-image div:nth-child(3),
+        .loading-image div:nth-child(4),
+        .loading-image div:nth-child(5),
+        .loading-image div:nth-child(6) {
+            background-color: #49b1f5;
+            width: 15px;
+            height: 15px;
+            border-radius: 100%;
+            margin: 2px;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            transform: translateY(-6.25px);
+            top: 25px;
+            left: 100px;
+        }
+
+        .loading-text {
+            margin-bottom: 20vh;
+            text-align: center;
+            color: #49b1f5;
+            font-size: 2rem;
+            box-sizing: border-box;
+            padding: 0 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @media only screen and (max-width: 500px) {
+            .loading-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* logo出现动画 */
+        @-webkit-keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+                transform: translate3d(0, -100%, 0)
+            }
+
+            100% {
+                opacity: 1;
+                -webkit-transform: none;
+                transform: none
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                -webkit-transform: translate3d(0, -100%, 0);
+            }
+        }
+    </style>
+      
+
     <header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
@@ -713,6 +809,7 @@
 </script>
 
 
+
     </div>
 </div>
 
@@ -730,15 +827,15 @@
                 
                 
                 
-                <a href="/categories/%E9%A1%B9%E7%9B%AE%E4%B9%8B%E6%A0%91/" title="项目之树: 3">
+                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" title="技能之树: 7">
                   <div class="moleskine-wrapper">
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
-                           chip-default "
-                                  style="background-color: #D1CABD;">                                               
+                           chip-active "
+                                  style="background-color: #31289F;">                                               
                               <div class="notebook-skin
-                                   chip-default "
-                                  >项目之树                                  
+                                   chip-active "
+                                  >技能之树                                  
                               </div>
                           </div>
                           <div class="notebook-page dotted"></div>
@@ -747,15 +844,15 @@
                 </a>
                 
                 
-                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" title="技能之树: 1">
+                <a href="/categories/%E9%A1%B9%E7%9B%AE%E4%B9%8B%E6%A0%91/" title="项目之树: 3">
                   <div class="moleskine-wrapper">
                       <div class="moleskine-notebook">
                           <div class="chip notebook-cover center-align waves-effect waves-light
-                           chip-active "
-                                  style="background-color: #600C79;">                                               
+                           chip-default "
+                                  style="background-color: #A3C340;">                                               
                               <div class="notebook-skin
-                                   chip-active "
-                                  >技能之树                                  
+                                   chip-default "
+                                  >项目之树                                  
                               </div>
                           </div>
                           <div class="notebook-page dotted"></div>
@@ -886,24 +983,32 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/posts/4b3510a4.html">
+                    <a href="/posts/220202af.html">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/6.jpg" class="responsive-img" alt="jQuery+CSS3实现的文字背景粒子特效">
+                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/12.jpg" class="responsive-img" alt="Tableau学习Step6一如何制作炫彩地图">
                             
-                            <span class="card-title">jQuery+CSS3实现的文字背景粒子特效</span>
+                            <span class="card-title">Tableau学习Step6一如何制作炫彩地图</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                一款jQuery+CSS3的文字背景粒子动画特效，一共6种粒子效果，每种文字背景的粒子效果都不同，有漂浮的有坠落的等等。 
+                                Tableau学习Step6——如何制作炫彩地图一.统计地图概述
+1.1 统计地图的基本概念
+
+统计地图的本质:数据的正确对应
+将数据信息和地理位置严格对应起来,并加以图形呈现
+
+
+如何将数据和地理位置对应起来?
+将数据信息和其所在的地理点
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-02
                             </span>
                             <span class="publish-author">
                                 
@@ -921,12 +1026,260 @@
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/CSS3/">
-                            <span class="chip bg-color">CSS3</span>
+                        <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">Tableau学习</span>
                         </a>
                         
-                        <a href="/tags/%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88/">
-                            <span class="chip bg-color">粒子特效</span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/posts/220202ae.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/1.jpg" class="responsive-img" alt="Tableau学习Step5一表计算、详细级别表达式、动作、外接python">
+                            
+                            <span class="card-title">Tableau学习Step5一表计算、详细级别表达式、动作、外接python</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                表计算、详细级别表达式、动作、外接python,什么是表计算,是特殊类型的计算字段
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">Tableau学习</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/posts/220202ad.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/15.jpg" class="responsive-img" alt="Tableau学习Step4一数据解释、异常值监测、参数使用、分析结果如何对外发布">
+                            
+                            <span class="card-title">Tableau学习Step4一数据解释、异常值监测、参数使用、分析结果如何对外发布</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Tableau学习Step4一数据解释、异常值监测、参数使用、分析结果如何对外发布一. 前言
+本教程通过一个案例从浅到深来学习Tableau知识
+
+
+1.1 消费者信心指数定义消费者信心( Consumer Confidence or Co
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">Tableau学习</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/posts/220202ac.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/15.jpg" class="responsive-img" alt="Tableau学习Step3一数据的连接与基本图形的制作">
+                            
+                            <span class="card-title">Tableau学习Step3一数据的连接与基本图形的制作</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Tableau学习Step3一数据的连接与基本图形的制作一. 前言
+本教程通过一个案例从浅到深来学习Tableau知识
+
+案例概述
+
+Northwind公司的数据库架构
+
+二. 商业理解
+三. Tableau中的数据连接和数据源3.1 数据
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">Tableau学习</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/posts/220202aa.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/28.jpg" class="responsive-img" alt="Tableau学习step1一Tableau概述">
+                            
+                            <span class="card-title">Tableau学习step1一Tableau概述</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Tableau优点:简单易用,只要是会用 EXCEL,几分钟就可掌握 Tableau的基本用法,急速高效
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">Tableau学习</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/posts/220202ab.html">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/HexoBlog@main/imagesBlog/posts/38.jpg" class="responsive-img" alt="Tableau学习Step2一数据文件的读取与统计图、表的概述">
+                            
+                            <span class="card-title">Tableau学习Step2一数据文件的读取与统计图、表的概述</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Tableau学习Step2一数据文件的读取与统计图、表的概述
+一. 前言
+本教程通过一个案例从浅到深来学习Tableau知识
+
+
+案例概述：
+
+二. 文件读取2.1 数据结构
+统计分析方法,都是以关系型数据库的二维表作为基本数据结构的
+
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-02
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Tableau%E5%AD%A6%E4%B9%A0/">
+                            <span class="chip bg-color">Tableau学习</span>
                         </a>
                         
                     </div>
@@ -939,9 +1292,33 @@
 </main>
 
 
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 
-    <footer class="page-footer bg-color">
+
+
+    <footer class="page-footer bg-color" >
     
         <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
 <style>
@@ -1010,7 +1387,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">7.8k</span>&nbsp;字
+                class="white-color">12.6k</span>&nbsp;字
             
             
             
@@ -1128,8 +1505,9 @@
 </footer>
 
 <div class="progress-bar"></div>
+
 <!-- 百度站长统计 -->
-<script>
+<!-- <script>
     var _hmt = _hmt || [];
     (function() {
     var hm = document.createElement("script");
@@ -1137,7 +1515,7 @@
     var s = document.getElementsByTagName("script")[0]; 
     s.parentNode.insertBefore(hm, s);
     })();
-</script>
+</script> -->
 
     <!-- 搜索遮罩框 -->
 <div id="searchModal" class="modal">
@@ -1249,6 +1627,7 @@ $(function () {
         <i class="fas fa-arrow-up"></i>
     </a>
 </div>
+
 
 
     <script src="/libs/materialize/materialize.min.js"></script>
@@ -1374,6 +1753,8 @@ $(function () {
         <script type="text/javascript"> var windowWidth = $(window).width(); if (windowWidth > 768) { document.write('<script type="text/javascript" src="/libs/others/sakura.js"><\/script>'); } </script>
     
   
+
+
 </body>
 
 </html>

@@ -92,3 +92,39 @@ body{
         display: none;
     }
 }
+
+/* 小熊 */
+.bear {
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    bottom: -262px;
+    background: url(/medias/bear.png) no-repeat;
+    /* 元素可以添加多个动画， 用逗号分隔 */
+    animation: bear .4s steps(8) infinite, move 5s forwards;
+}
+
+@keyframes bear {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -1600px 0;
+    }
+}
+
+@keyframes move {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 50%;
+        /* margin-left: -100px; */
+        transform: translateX(-50%);
+    }
+}
+@media only screen and (max-width: 601px) {
+    .bear {
+        display: none;
+    }
+}
