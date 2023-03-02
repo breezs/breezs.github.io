@@ -905,7 +905,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222822497.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/posts/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -1063,7 +1063,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-08
+                    2023-03-02
                 </div>
                 
 
@@ -1095,7 +1095,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图"><a href="#Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图" class="headerlink" title="Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图"></a>Tableau绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图</h1><h2 id="一-热图"><a href="#一-热图" class="headerlink" title="一.热图"></a>一.热图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911164314869.png" alt="image-20210911164314869"></p>
+                <h1 id="Tableau-绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图"><a href="#Tableau-绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图" class="headerlink" title="Tableau 绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图"></a>Tableau 绘图一热图、日历图、人口金字塔、标靶图、凹凸图、帕累托图</h1><h2 id="一-热图"><a href="#一-热图" class="headerlink" title="一.热图"></a>一.热图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911164314869.png" alt="image-20210911164314869"></p>
 <p><strong>例子：示例超市</strong></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911213634687.png" alt="image-20210911213634687">可以通过更改颜色来改变颜色的显示情况</p>
 <h2 id="二-日历-日历图"><a href="#二-日历-日历图" class="headerlink" title="二.日历/日历图"></a>二.日历/日历图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210911221412816.png" alt="image-20210911221412816"></p>
@@ -1104,7 +1104,7 @@
 <p>按要求修改日期的格式</p>
 <h2 id="三-人口金字塔-旋风图"><a href="#三-人口金字塔-旋风图" class="headerlink" title="三.人口金字塔/旋风图"></a>三.人口金字塔/旋风图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111150840162-16437860886286.png" alt="image-20220111150840162"></p>
 <p>数据源：绘图数据</p>
-<p>由于数据源中含有85岁以上的人，不能之间判断。这里可将Age转换为字符串，然后创建计算字段，命名为</p>
+<p>由于数据源中含有 85 岁以上的人，不能之间判断。这里可将 Age 转换为字符串，然后创建计算字段，命名为</p>
 <pre class="line-numbers language-none"><code class="language-none">年龄=if [Age]='85+' THEN 85 ELSE INT([Age])
 END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -1116,7 +1116,7 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <p>分别拖字段，以及倒序轴，设置颜色</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20220111165622853-164378609602610.png" alt="image-20220111165622853"></p>
 <h2 id="四-标靶图"><a href="#四-标靶图" class="headerlink" title="四. 标靶图"></a>四. 标靶图</h2><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912215950728.png" alt="image-20210912215950728"></p>
-<h3 id="4-1-数据源-示例超市-销售目标"><a href="#4-1-数据源-示例超市-销售目标" class="headerlink" title="4.1 数据源:示例超市+销售目标"></a>4.1 数据源:示例超市+销售目标</h3><p>从Tableau【帮助】——【示例工作簿】——【示例超市】加载</p>
+<h3 id="4-1-数据源-示例超市-销售目标"><a href="#4-1-数据源-示例超市-销售目标" class="headerlink" title="4.1 数据源:示例超市+销售目标"></a>4.1 数据源:示例超市+销售目标</h3><p>从 Tableau【帮助】——【示例工作簿】——【示例超市】加载</p>
 <h3 id="4-2-步骤："><a href="#4-2-步骤：" class="headerlink" title="4.2 步骤："></a>4.2 步骤：</h3><p>（1）新建一个工作簿</p>
 <p>（2）把【销售额】拖到列这一栏，把【订单日期】拖到行这一栏，同时钻取日期为年和月，之后再把【细分】拖到行这一栏（为了图表美观，可【订单日期】拖到<strong>筛选器</strong>，筛选任意一年的时间，本图表筛选日期为<strong>年——2016</strong>，</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912221532086.png" alt="image-20210912221532086"></p>
@@ -1130,7 +1130,7 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <p>（6）为了在与图表互动时能够显示差值，可把【销售额】拖入到<strong>详细信息</strong>，再把公式编辑成如下第一张图所示。之后点击工具提示，把内容改为如第二张图所示</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223017469.png" alt="image-20210912223017469"></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223359812.png" alt="image-20210912223359812"></p>
-<p>（7）点击<strong>分析</strong>，把<strong>分布区间</strong>拖入到弹出的窗口的<strong>单元格</strong>中，值可设为40,60,80,填充选取一个颜色，，选择向下填充复选框。</p>
+<p>（7）点击<strong>分析</strong>，把<strong>分布区间</strong>拖入到弹出的窗口的<strong>单元格</strong>中，值可设为 40,60,80,填充选取一个颜色，，选择向下填充复选框。</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223809345.png" alt="image-20210912223809345"></p>
 <p>（8）结果——（可按自己要求更改图表配色）</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210912223940195.png" alt="image-20210912223940195"></p>
@@ -1143,11 +1143,11 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <p>（3）把【销售额】添加快速表计算，之后再编辑快速表计算，<strong>计算依据</strong>改为特定维度，只勾选【子类别】复选框，大致可以得到凹凸图雏形。</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913114058304.png" alt="image-20210913114058304"></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913114244066.png" alt="image-20210913114244066"></p>
-<p>（4）按住CTRL键把销售额往后拖，即复制销售额这一栏，之后把第二个<strong>总和（销售额）</strong>改为<strong>圆</strong>，并点击<strong>标签</strong>，勾选<strong>显示标记标签</strong>和<strong>允许标签覆盖其他标记</strong>两个复选框,把对齐中的<strong>水平与垂直</strong>均设置为<strong>居中</strong><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913115428668.png" alt="image-20210913115428668"></p>
+<p>（4）按住 CTRL 键把销售额往后拖，即复制销售额这一栏，之后把第二个<strong>总和（销售额）</strong>改为<strong>圆</strong>，并点击<strong>标签</strong>，勾选<strong>显示标记标签</strong>和<strong>允许标签覆盖其他标记</strong>两个复选框,把对齐中的<strong>水平与垂直</strong>均设置为<strong>居中</strong><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913115428668.png" alt="image-20210913115428668"></p>
 <p>（5)之后点击行这一栏的第二个【销售额】的小三角，然后弹出的对话框点击<strong>双轴</strong>，可得到基本图形了，但仍有不足，线与圆之间不对称，这是由于两个轴不同步引起的。此时可对<strong>右侧坐标轴鼠标右键</strong>，点击<strong>同步轴</strong></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913115920574.png" alt="image-20210913115920574"></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120100145.png" alt="image-20210913120100145"></p>
-<p>（6）<strong>调整坐标刻度为倒序</strong>，此时排序为1的排到最上面，之后由于坐标轴在凹凸图中没有意义，可把坐标轴隐藏掉。分别对两个轴鼠标右键，去掉<strong>显示标题的勾</strong></p>
+<p>（6）<strong>调整坐标刻度为倒序</strong>，此时排序为 1 的排到最上面，之后由于坐标轴在凹凸图中没有意义，可把坐标轴隐藏掉。分别对两个轴鼠标右键，去掉<strong>显示标题的勾</strong></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120324077.png" alt="image-20210913120324077"></p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913120457532.png" alt="image-20210913120457532"></p>
 <p>（7）结果</p>
@@ -1157,7 +1157,7 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <h3 id="6-1-基础版"><a href="#6-1-基础版" class="headerlink" title="6.1 基础版"></a>6.1 基础版</h3><p>（1）连接数据源，新建一个工作簿</p>
 <p>（2）将【子类别】拖到列这一栏，将【销售额】拖到行这一栏，之后对【销售额】进行降序排序，即可得到基本的条形图</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222419420.png" alt="image-20210913222419420"></p>
-<p>（3）将按住CTRL的同时把行上的【销售额】往后拖一个，即复制销售额，之后再对第二个销售额快速表计算——汇总</p>
+<p>（3）将按住 CTRL 的同时把行上的【销售额】往后拖一个，即复制销售额，之后再对第二个销售额快速表计算——汇总</p>
 <p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913222822497.png" alt="image-20210913222822497"></p>
 <p>（4）将第二个【销售额】的标记改为<strong>线</strong>，，之后编辑表计算，在弹出来的对话框中计算依据勾选特定维度，最下面勾选添加辅助计算复选框，在新的辅助计算中<strong>从属计算类型</strong>选择<strong>合计百分比</strong>，<strong>计算依据</strong>改为<strong>特定维度</strong><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20210913223442577.png" alt="image-20210913223442577"></p>
 <p>（5）合并双轴，并把第一个【销售额】的标记改为<strong>条形图</strong></p>
@@ -1717,7 +1717,8 @@ new Valine({
                 <a href="/posts/220203ab.html">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/Tableau/draw/image-20211004135308267.png" class="responsive-img" alt="Tableau绘制K线图、布林线、圆环图、雷达图">
+                        
+                        <img src="/medias/posts/33.jpg" class="responsive-img" alt="Tableau绘制K线图、布林线、圆环图、雷达图">
                         
                         <span class="card-title">Tableau绘制K线图、布林线、圆环图、雷达图</span>
                     </div>
@@ -1726,9 +1727,9 @@ new Valine({
                     <div class="summary block-with-text">
                         
                             <!--  -->
-                            Tableau绘制K线图、布林线、圆环图、雷达图一. K线图
+                            Tableau 绘制 K 线图、布林线、圆环图、雷达图一. K 线图
 1.1 导入数据源
-1.2 拖拽字段将【日期】托到列这一栏，并将其改为年/月/
+1.2 拖拽字段将【日期】托到列这一栏，并将其改为
                         
                     </div>
                     <div class="publish-info">
@@ -2045,7 +2046,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">77.5k</span>&nbsp;字
+                class="white-color">77.6k</span>&nbsp;字
             
             
             
