@@ -1,6 +1,1145 @@
-<!DOCTYPE HTML><html lang="zh-CN"><head><meta charset="utf-8"><meta name="keywords" content="Ajax概述，封装以及联合模板引擎进行数据交互, 可视化 前端 数据分析 电气"><meta name="description" content="向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="renderer" content="webkit|ie-stand|ie-comp"><meta name="mobile-web-app-capable" content="yes"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="google-site-verification" content="pBWoGvVEP36FzzS4xIpoMejc5UKi3RKcxd9rWWcjiDg"><title>Ajax概述，封装以及联合模板引擎进行数据交互 | 冰山一树Sankey</title><link rel="icon" type="image/png" href="/favicon.png"><link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css"><link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css"><link rel="stylesheet" type="text/css" href="/libs/aos/aos.css"><link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css"><link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css"><link rel="stylesheet" type="text/css" href="/css/matery.css"><link rel="stylesheet" type="text/css" href="/css/my.css"><script src="/libs/jquery/jquery.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;900&display=swap" rel="stylesheet" media="print" onload='this.media="all"'><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?aaa6c944b0ed07922901d7fc571a171d";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="冰山一树Sankey" type="application/atom+xml"><style>.github-emoji{position:relative;display:inline-block;width:1.2em;min-height:1.2em;overflow:hidden;vertical-align:top;color:transparent}.github-emoji>span{position:relative;z-index:10}.github-emoji .fancybox,.github-emoji img{margin:0!important;padding:0!important;border:none!important;outline:0!important;text-decoration:none!important;user-select:none!important;cursor:auto!important}.github-emoji img{height:1.2em!important;width:1.2em!important;position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;user-select:none!important;cursor:auto!important}.github-emoji-fallback{color:inherit}.github-emoji-fallback img{opacity:0!important}</style></head><style>body{background-image:url(https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/background.jpg);background-repeat:no-repeat;background-size:cover;background-attachment:fixed}</style><body><script>window.addEventListener("load",(function(){const e=document.getElementById("loading-box");document.body.style.overflow="auto",document.getElementById("loading-box").classList.add("fadeout"),setTimeout((function(){e.style.display="none"}),1e3)}),!1)</script><div id="loading-box"><div class="loader"><div class="loader__bar"></div><div class="loader__bar"></div><div class="loader__bar"></div><div class="loader__bar"></div><div class="loader__bar"></div><div class="loader__ball"></div><span class="load__text">加载中...</span></div></div><style>#loading-box.fadeout{opacity:0}#loading-box{position:fixed;z-index:100000;width:100%;height:100%;background-color:#fff;display:flex;align-items:center;justify-content:center;-webkit-transition:opacity 1s ease;-moz-transition:opacity 1s ease;-o-transition:opacity 1s ease;transition:opacity 1s ease}.loader{position:relative;width:75px;height:100px}.loader__bar{position:absolute;bottom:0;width:10px;height:50%;background:#05d9f5;transform-origin:center bottom;box-shadow:1px 1px 0 rgba(0,0,0,.2)}.loader__bar:nth-child(1){left:0;transform:scale(1,.2);animation:barUp1 4s infinite}.loader__bar:nth-child(2){left:15px;transform:scale(1,.4);animation:barUp2 4s infinite}.loader__bar:nth-child(3){left:30px;transform:scale(1,.6);animation:barUp3 4s infinite}.loader__bar:nth-child(4){left:45px;transform:scale(1,.8);animation:barUp4 4s infinite}.loader__bar:nth-child(5){left:60px;transform:scale(1,1);animation:barUp5 4s infinite}.loader__ball{position:absolute;bottom:10px;left:0;width:12px;height:12px;background:#05f5e9;border-radius:50%;animation:ball 4s infinite}@keyframes ball{0%{transform:translate(0,0)}5%{transform:translate(8px,-14px)}10%{transform:translate(15px,-10px)}17%{transform:translate(23px,-24px)}20%{transform:translate(30px,-20px)}27%{transform:translate(38px,-34px)}30%{transform:translate(45px,-30px)}37%{transform:translate(53px,-44px)}40%{transform:translate(60px,-40px)}50%{transform:translate(60px,0)}57%{transform:translate(53px,-14px)}60%{transform:translate(45px,-10px)}67%{transform:translate(37px,-24px)}70%{transform:translate(30px,-20px)}77%{transform:translate(22px,-34px)}80%{transform:translate(15px,-30px)}87%{transform:translate(7px,-44px)}90%{transform:translate(0,-40px)}100%{transform:translate(0,0)}}@keyframes barUp1{0%{transform:scale(1,.2)}40%{transform:scale(1,.2)}50%{transform:scale(1,1)}90%{transform:scale(1,1)}100%{transform:scale(1,.2)}}@keyframes barUp2{0%{transform:scale(1,.4)}40%{transform:scale(1,.4)}50%{transform:scale(1,.8)}90%{transform:scale(1,.8)}100%{transform:scale(1,.4)}}@keyframes barUp3{0%{transform:scale(1,.6)}100%{transform:scale(1,.6)}}@keyframes barUp4{0%{transform:scale(1,.8)}40%{transform:scale(1,.8)}50%{transform:scale(1,.4)}90%{transform:scale(1,.4)}100%{transform:scale(1,.8)}}@keyframes barUp5{0%{transform:scale(1,1)}40%{transform:scale(1,1)}50%{transform:scale(1,.2)}90%{transform:scale(1,.2)}100%{transform:scale(1,1)}}.load__text{position:absolute;left:auto;top:120px;color:#05d9f5;font-size:larger}</style><header class="navbar-fixed"><nav id="headNav" class="bg-color nav-transparent"><div id="navContainer" class="nav-wrapper container"><div class="brand-logo"><a href="/" class="waves-effect waves-light"><img src="/medias/logo.png" class="logo-img" alt="LOGO"> <span class="logo-span">冰山一树Sankey</span></a></div><a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a><ul class="right nav-menu"><li class="hide-on-med-and-down nav-item"><a href="/" class="waves-effect waves-light"><i class="fas fa-home" style="zoom:.6"></i> <span>首页</span></a></li><li class="hide-on-med-and-down nav-item"><a href="" class="waves-effect waves-light"><i class="fas fa-snowflake" style="zoom:.6"></i> <span>博客</span> <i class="fas fa-chevron-down" aria-hidden="true" style="zoom:.6"></i></a><ul class="sub-nav menus_item_child"><li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59464010"><i class="fas fa-book-open" style="margin-top:-20px;zoom:.6"></i> <span>CSDN</span></a></li><li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bingshanyishu"><i class="fa fa-rss-square" style="margin-top:-20px;zoom:.6"></i> <span>博客园</span></a></li></ul></li><li class="hide-on-med-and-down nav-item"><a href="" class="waves-effect waves-light"><i class="fas fa-archive" style="zoom:.6"></i> <span>归档</span> <i class="fas fa-chevron-down" aria-hidden="true" style="zoom:.6"></i></a><ul class="sub-nav menus_item_child"><li><a href="/archives"><i class="fas fa-hourglass-half" style="margin-top:-20px;zoom:.6"></i> <span>时轴</span></a></li><li><a href="/categories"><i class="fas fa-bookmark" style="margin-top:-20px;zoom:.6"></i> <span>分类</span></a></li><li><a href="/tags"><i class="fas fa-tag" style="margin-top:-20px;zoom:.6"></i> <span>标签</span></a></li><li><a href="/pdf"><i class="fas fa-file-pdf" style="margin-top:-20px;zoom:.6"></i> <span>PDF</span></a></li></ul></li><li class="hide-on-med-and-down nav-item"><a href="" class="waves-effect waves-light"><i class="fas fa-heartbeat" style="zoom:.6"></i> <span>清单</span> <i class="fas fa-chevron-down" aria-hidden="true" style="zoom:.6"></i></a><ul class="sub-nav menus_item_child"><li><a href="/List/music"><i class="fas fa-music" style="margin-top:-20px;zoom:.6"></i> <span>音乐</span></a></li><li><a href="/List/galleries"><i class="fas fa-image" style="margin-top:-20px;zoom:.6"></i> <span>相册</span></a></li><li><a href="/List/movies"><i class="fas fa-film" style="margin-top:-20px;zoom:.6"></i> <span>视频</span></a></li><li><a target="_blank" rel="noopener" href="https://github.com/bingshanyishu/free-programming-books-zh_CN"><i class="fas fa-book" style="margin-top:-20px;zoom:.6"></i> <span>书籍</span></a></li></ul></li><li class="hide-on-med-and-down nav-item"><a href="/contact" class="waves-effect waves-light"><i class="fas fa-envelope" style="zoom:.6"></i> <span>留言</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/tools" class="waves-effect waves-light"><i class="fas fa-paper-plane" style="zoom:.6"></i> <span>导航</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/friends" class="waves-effect waves-light"><i class="fas fa-link" style="zoom:.6"></i> <span>友链</span></a></li><li class="hide-on-med-and-down nav-item"><a href="/about" class="waves-effect waves-light"><i class="fas fa-user-circle" style="zoom:.6"></i> <span>关于</span></a></li><li><a href="#searchModal" class="modal-trigger waves-effect waves-light"><i id="searchIcon" class="fas fa-search" title="搜索" style="zoom:.85"></i></a></li></ul><div id="mobile-nav" class="side-nav sidenav"><div class="mobile-head bg-color"><img src="/medias/logo.png" class="logo-img circle responsive-img"><div class="logo-name">冰山一树Sankey</div><div class="logo-desc">向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！</div></div><ul class="menu-list mobile-menu-list"><li class="m-nav-item"><a href="/" class="waves-effect waves-light"><i class="fa-fw fas fa-home"></i> 首页</a></li><li class="m-nav-item"><a href="javascript:;"><i class="fa-fw fas fa-snowflake"></i> 博客 <span class="m-icon"><i class="fas fa-chevron-right"></i></span></a><ul><li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59464010" style="margin-left:75px"><i class="fa fas fa-book-open" style="position:absolute;left:50px"></i> <span>CSDN</span></a></li><li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/bingshanyishu" style="margin-left:75px"><i class="fa fa fa-rss-square" style="position:absolute;left:50px"></i> <span>博客园</span></a></li></ul></li><li class="m-nav-item"><a href="javascript:;"><i class="fa-fw fas fa-archive"></i> 归档 <span class="m-icon"><i class="fas fa-chevron-right"></i></span></a><ul><li><a href="/archives" style="margin-left:75px"><i class="fa fas fa-hourglass-half" style="position:absolute;left:50px"></i> <span>时轴</span></a></li><li><a href="/categories" style="margin-left:75px"><i class="fa fas fa-bookmark" style="position:absolute;left:50px"></i> <span>分类</span></a></li><li><a href="/tags" style="margin-left:75px"><i class="fa fas fa-tag" style="position:absolute;left:50px"></i> <span>标签</span></a></li><li><a href="/pdf" style="margin-left:75px"><i class="fa fas fa-file-pdf" style="position:absolute;left:50px"></i> <span>PDF</span></a></li></ul></li><li class="m-nav-item"><a href="javascript:;"><i class="fa-fw fas fa-heartbeat"></i> 清单 <span class="m-icon"><i class="fas fa-chevron-right"></i></span></a><ul><li><a href="/List/music" style="margin-left:75px"><i class="fa fas fa-music" style="position:absolute;left:50px"></i> <span>音乐</span></a></li><li><a href="/List/galleries" style="margin-left:75px"><i class="fa fas fa-image" style="position:absolute;left:50px"></i> <span>相册</span></a></li><li><a href="/List/movies" style="margin-left:75px"><i class="fa fas fa-film" style="position:absolute;left:50px"></i> <span>视频</span></a></li><li><a target="_blank" rel="noopener" href="https://github.com/bingshanyishu/free-programming-books-zh_CN" style="margin-left:75px"><i class="fa fas fa-book" style="position:absolute;left:50px"></i> <span>书籍</span></a></li></ul></li><li class="m-nav-item"><a href="/contact" class="waves-effect waves-light"><i class="fa-fw fas fa-envelope"></i> 留言</a></li><li class="m-nav-item"><a href="/tools" class="waves-effect waves-light"><i class="fa-fw fas fa-paper-plane"></i> 导航</a></li><li class="m-nav-item"><a href="/friends" class="waves-effect waves-light"><i class="fa-fw fas fa-link"></i> 友链</a></li><li class="m-nav-item"><a href="/about" class="waves-effect waves-light"><i class="fa-fw fas fa-user-circle"></i> 关于</a></li><li><div class="divider"></div></li><li><a href="https://github.com/bingshanyishu/" class="waves-effect waves-light" target="_blank"><i class="fab fa-github-square fa-fw"></i>Fork Me</a></li></ul></div></div><style>.nav-transparent .github-corner{display:none!important}.github-corner{position:absolute;z-index:10;top:0;right:0;border:0;transform:scale(1.1)}.github-corner svg{color:#0f9d58;fill:#fff;height:64px;width:64px}.github-corner:hover .octo-arm{animation:a .56s ease-in-out}.github-corner .octo-arm{animation:none}@keyframes a{0%,to{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}</style><a href="https://github.com/bingshanyishu/" class="github-corner tooltipped hide-on-med-and-down" target="_blank" data-tooltip="Fork Me" data-position="left" data-delay="50"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a></nav></header><script src="/libs/cryptojs/crypto-js.min.js"></script><script></script><div class="bg-cover pd-header post-cover" style="background-image:url(https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/posts/10.jpg)"><div class="container" style="right:0;left:0"><div class="row"><div class="col s12 m12 l12"><div class="brand"><h1 class="description center-align post-title">Ajax概述，封装以及联合模板引擎进行数据交互</h1></div></div></div></div></div><main class="post-container content"><link rel="stylesheet" href="/libs/tocbot/tocbot.css"><style>#articleContent h1::before,#articleContent h2::before,#articleContent h3::before,#articleContent h4::before,#articleContent h5::before,#articleContent h6::before{display:block;content:" ";height:100px;margin-top:-100px;visibility:hidden}#articleContent :focus{outline:0}.toc-fixed{position:fixed;top:64px}.toc-widget{background-color:#fff;width:345px;padding-left:20px;border-radius:10px;box-shadow:0 10px 35px 2px rgba(0,0,0,.15),0 5px 15px rgba(0,0,0,.07),0 2px 5px -5px rgba(0,0,0,.1)!important}.toc-widget .toc-title{padding:35px 0 15px 17px;font-size:1.5rem;font-weight:700;line-height:1.5rem}.toc-widget ol{padding:0;list-style:none}#toc-content{height:calc(100vh - 300px);overflow:scroll}#toc-content ol{padding-left:10px}#toc-content ol li{padding-left:10px}#toc-content .toc-link:hover{color:#42b983;font-weight:700;text-decoration:underline}#toc-content .toc-link::before{background-color:transparent;max-height:25px;position:absolute;right:23.5vw;display:block}#toc-content .is-active-link{color:#42b983}#floating-toc-btn{position:fixed;right:15px;bottom:76px;padding-top:15px;margin-bottom:0;z-index:998}#floating-toc-btn .btn-floating{width:48px;height:48px;bottom:120px}#floating-toc-btn .btn-floating i{line-height:48px;font-size:1.4rem}</style><div class="row"><div id="main-content" class="col s12 m12 l9"><div id="artDetail"><div class="card"><div class="card-content article-info"><div class="row tag-cate"><div class="col s7"><div class="article-tag"><a href="/tags/%E5%89%8D%E7%AB%AF/"><span class="chip bg-color">前端</span> </a><a href="/tags/Ajax/"><span class="chip bg-color">Ajax</span></a></div></div><div class="col s5 right-align"><div class="post-cate"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">技能之树</a></div></div></div><div class="post-info"><div class="post-date info-break-policy"><i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp; 2022-03-19</div><div class="post-date info-break-policy"><i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp; 2022-03-19</div><div class="info-break-policy"><i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp; 5.4k</div><div class="info-break-policy"><i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp; 24 分</div></div></div><hr class="clearfix"><link rel="stylesheet" href="/libs/prism/prism.css"><div class="card-content article-card-content"><div id="articleContent"><h1 id="Ajax概述，封装以及联合模板引擎进行数据交互"><a href="#Ajax概述，封装以及联合模板引擎进行数据交互" class="headerlink" title="Ajax概述，封装以及联合模板引擎进行数据交互"></a>Ajax概述，封装以及联合模板引擎进行数据交互</h1><p>博客园主页：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bingshanyishu">博客园主页-冰山一树Sankey</a><br>CSDN主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59464010">CSDN主页-冰山一树Sankey</a></p><p>更多资料可参考<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/ajaxlesson/ajaxintro.html">Ajax 介绍篇丨慕课网教程 (imooc.com)</a></p><h2 id="一-Ajax概述"><a href="#一-Ajax概述" class="headerlink" title="一. Ajax概述"></a>一. Ajax概述</h2><p>在网站中存在以下问题：</p><ul><li>网速慢的情况下，页面加载时间长，用户只能等待</li><li>表单提交后，如果一项内容不合格，需要重新填写所有表单内容</li><li>页面跳转，重新加载页面，造成资源浪费，增加用户等待时间</li></ul><p>于是Ajax诞生了，Ajax：标准读音 [ˈeɪˌdʒæks] ，中文音译：阿贾克斯</p><p>它是浏览器提供的一套方法，可以实现页面无刷新更新数据，提高用户浏览网站应用的体验。</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/%E5%BD%95%E5%88%B6_2022_03_17_21_37_32_165.gif" alt="录制_2022_03_17_21_37_32_165"></p><h2 id="二-Ajax运行环境及实现"><a href="#二-Ajax运行环境及实现" class="headerlink" title="二. Ajax运行环境及实现"></a>二. Ajax运行环境及实现</h2><h3 id="2-1-Ajax运行环境"><a href="#2-1-Ajax运行环境" class="headerlink" title="2.1 Ajax运行环境"></a>2.1 Ajax运行环境</h3><p>Ajax 相当于浏览器发送请求与接收响应的代理人，以实现在不影响用户浏览页面的情况下，局部更新页面数据，从而提高用户体验。在浏览器端与服务器端进行请求响应是不可以控制的，但使用Ajax后，开发人员人员可控制其过程。</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220317223015626.png" alt="image-20220317223015626"></p><p>那如何实现Ajax呢？</p><ol><li>创建 Ajax 对象</li></ol><pre class="line-numbers language-none"><code class="language-none">var xhr = new XMLHttpRequest();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="2"><li>告诉 Ajax 请求地址以及请求方式</li></ol><pre class="line-numbers language-none"><code class="language-none">xhr.open('get', 'http://www.example.com');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="3"><li>发送请求</li></ol><pre class="line-numbers language-none"><code class="language-none">xhr.send();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="4"><li>获取服务器端给与客户端的响应数据</li></ol><pre class="line-numbers language-none"><code class="language-none">xhr.onload = function () {
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Ajax概述，封装以及联合模板引擎进行数据交互, 可视化 前端 数据分析 电气">
+    <meta name="description" content="向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google-site-verification" content="pBWoGvVEP36FzzS4xIpoMejc5UKi3RKcxd9rWWcjiDg" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Ajax概述，封装以及联合模板引擎进行数据交互 | 冰山一树Sankey</title>
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?aaa6c944b0ed07922901d7fc571a171d";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
+
+<meta name="generator" content="Hexo 5.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="冰山一树Sankey" type="application/atom+xml">
+</head>
+
+
+   <style>
+    body{
+       background-image: url(https://bingshanyishu.github.io/medias/background.jpg);
+       background-repeat:no-repeat;
+       background-size:cover;
+       background-attachment:fixed;
+    }
+</style>
+
+
+
+
+<body>
+    
+    <script>
+        window.addEventListener('load', function () {
+            const loader = document.getElementById("loading-box");
+            document.body.style.overflow = 'auto';
+            document.getElementById('loading-box').classList.add("fadeout");
+            setTimeout(function () {
+                loader.style.display = "none";
+            }, 1000);     //1秒后，页面消失
+        }, false)
+
+    </script>
+    <!-- <script>
+        (function () {
+               setTimeout(function(){
+                    const loader = document.getElementById("loading-box");
+                    loader.className="fadeout" ;//使用渐隐的方法淡出loading page
+                    // document.getElementById("body-wrap").style.display="flex";
+                    setTimeout(function(){
+                        loader.style.display="none";
+                    },1000); 
+                },1000);//强制显示loading page 1s  
+        })()
+          </script> -->
+
+    <div id="loading-box">
+        <div class="loader">
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__bar"></div>
+            <div class="loader__ball"></div>
+            <span class="load__text">加载中...</span>
+        </div>
+    </div>
+
+    <style>
+        #loading-box.fadeout {
+            opacity: 0;
+            filter: alpha(opacity=0);
+            /* display: none;   */
+            /* z-index: -1000; */
+
+        }
+
+        /* loading-box.loading {
+            display: none;
+        } */
+
+        /* .fadeout {
+        opacity: 0;
+        filter: alpha(opacity=0);
+     } */
+
+        #loading-box {
+            position: fixed;
+            z-index: 100000;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* loader页面消失采用渐隐的方式*/
+            -webkit-transition: opacity 1s ease;
+            -moz-transition: opacity 1s ease;
+            -o-transition: opacity 1s ease;
+            transition: opacity 1s ease;
+        }
+
+
+        .loader {
+            position: relative;
+            width: 75px;
+            height: 100px
+        }
+
+        .loader__bar {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 50%;
+            background: rgb(5, 217, 245);
+            transform-origin: center bottom;
+            box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2)
+        }
+
+        .loader__bar:nth-child(1) {
+            left: 0px;
+            transform: scale(1, .2);
+            animation: barUp1 4s infinite
+        }
+
+        .loader__bar:nth-child(2) {
+            left: 15px;
+            transform: scale(1, .4);
+            animation: barUp2 4s infinite
+        }
+
+        .loader__bar:nth-child(3) {
+            left: 30px;
+            transform: scale(1, .6);
+            animation: barUp3 4s infinite
+        }
+
+        .loader__bar:nth-child(4) {
+            left: 45px;
+            transform: scale(1, .8);
+            animation: barUp4 4s infinite
+        }
+
+        .loader__bar:nth-child(5) {
+            left: 60px;
+            transform: scale(1, 1);
+            animation: barUp5 4s infinite
+        }
+
+        .loader__ball {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: rgb(5, 245, 233);
+            border-radius: 50%;
+            animation: ball 4s infinite
+        }
+
+        @keyframes ball {
+            0% {
+                transform: translate(0, 0)
+            }
+
+            5% {
+                transform: translate(8px, -14px)
+            }
+
+            10% {
+                transform: translate(15px, -10px)
+            }
+
+            17% {
+                transform: translate(23px, -24px)
+            }
+
+            20% {
+                transform: translate(30px, -20px)
+            }
+
+            27% {
+                transform: translate(38px, -34px)
+            }
+
+            30% {
+                transform: translate(45px, -30px)
+            }
+
+            37% {
+                transform: translate(53px, -44px)
+            }
+
+            40% {
+                transform: translate(60px, -40px)
+            }
+
+            50% {
+                transform: translate(60px, 0)
+            }
+
+            57% {
+                transform: translate(53px, -14px)
+            }
+
+            60% {
+                transform: translate(45px, -10px)
+            }
+
+            67% {
+                transform: translate(37px, -24px)
+            }
+
+            70% {
+                transform: translate(30px, -20px)
+            }
+
+            77% {
+                transform: translate(22px, -34px)
+            }
+
+            80% {
+                transform: translate(15px, -30px)
+            }
+
+            87% {
+                transform: translate(7px, -44px)
+            }
+
+            90% {
+                transform: translate(0, -40px)
+            }
+
+            100% {
+                transform: translate(0, 0)
+            }
+        }
+
+        @keyframes barUp1 {
+            0% {
+                transform: scale(1, 0.2)
+            }
+
+            40% {
+                transform: scale(1, 0.2)
+            }
+
+            50% {
+                transform: scale(1, 1)
+            }
+
+            90% {
+                transform: scale(1, 1)
+            }
+
+            100% {
+                transform: scale(1, 0.2)
+            }
+        }
+
+        @keyframes barUp2 {
+            0% {
+                transform: scale(1, 0.4)
+            }
+
+            40% {
+                transform: scale(1, 0.4)
+            }
+
+            50% {
+                transform: scale(1, 0.8)
+            }
+
+            90% {
+                transform: scale(1, 0.8)
+            }
+
+            100% {
+                transform: scale(1, 0.4)
+            }
+        }
+
+        @keyframes barUp3 {
+            0% {
+                transform: scale(1, 0.6)
+            }
+
+            100% {
+                transform: scale(1, 0.6)
+            }
+        }
+
+        @keyframes barUp4 {
+            0% {
+                transform: scale(1, 0.8)
+            }
+
+            40% {
+                transform: scale(1, 0.8)
+            }
+
+            50% {
+                transform: scale(1, 0.4)
+            }
+
+            90% {
+                transform: scale(1, 0.4)
+            }
+
+            100% {
+                transform: scale(1, 0.8)
+            }
+        }
+
+        @keyframes barUp5 {
+            0% {
+                transform: scale(1, 1)
+            }
+
+            40% {
+                transform: scale(1, 1)
+            }
+
+            50% {
+                transform: scale(1, 0.2)
+            }
+
+            90% {
+                transform: scale(1, 0.2)
+            }
+
+            100% {
+                transform: scale(1, 1)
+            }
+        }
+
+        .load__text {
+            position: absolute;
+            left: auto;
+            top: 120px;
+            color: rgb(5, 217, 245);
+            font-size: larger;
+        }
+    </style>
+      
+      
+      
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">冰山一树Sankey</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-snowflake" style="zoom: 0.6;"></i>
+      
+      <span>博客</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59464010">
+          
+          <i class="fas fa-book-open" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>CSDN</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bingshanyishu">
+          
+          <i class="fa fa-rss-square" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>博客园</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/archives">
+          
+          <i class="fas fa-hourglass-half" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>时轴</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/categories">
+          
+          <i class="fas fa-bookmark" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>分类</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/tags">
+          
+          <i class="fas fa-tag" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>标签</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/pdf">
+          
+          <i class="fas fa-file-pdf" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>PDF</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="" class="waves-effect waves-light">
+
+      
+      <i class="fas fa-heartbeat" style="zoom: 0.6;"></i>
+      
+      <span>清单</span>
+      <i class="fas fa-chevron-down" aria-hidden="true" style="zoom: 0.6;"></i>
+    </a>
+    <ul class="sub-nav menus_item_child ">
+      
+      <li>
+        <a href="/List/music">
+          
+          <i class="fas fa-music" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>音乐</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/List/galleries">
+          
+          <i class="fas fa-image" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>相册</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="/List/movies">
+          
+          <i class="fas fa-film" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>视频</span>
+        </a>
+      </li>
+      
+      <li>
+        <a target="_blank" rel="noopener" href="https://github.com/bingshanyishu/free-programming-books-zh_CN">
+          
+          <i class="fas fa-book" style="margin-top: -20px; zoom: 0.6;"></i>
+          
+          <span>书籍</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-envelope" style="zoom: 0.6;"></i>
+      
+      <span>留言</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tools" class="waves-effect waves-light">
+      
+      <i class="fas fa-paper-plane" style="zoom: 0.6;"></i>
+      
+      <span>导航</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-link" style="zoom: 0.6;"></i>
+      
+      <span>友链</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">冰山一树Sankey</div>
+        <div class="logo-desc">
+            
+            向下以触冰山，向上以触云层，而中以桑基为流，所见即所得！
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-snowflake"></i>
+			
+			博客
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59464010 " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book-open" style="position: absolute;left:50px" ></i>
+			      
+		          <span>CSDN</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bingshanyishu " style="margin-left:75px">
+				  
+				   <i class="fa fa fa-rss-square" style="position: absolute;left:50px" ></i>
+			      
+		          <span>博客园</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-archive"></i>
+			
+			归档
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/archives " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-hourglass-half" style="position: absolute;left:50px" ></i>
+			      
+		          <span>时轴</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/categories " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-bookmark" style="position: absolute;left:50px" ></i>
+			      
+		          <span>分类</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/tags " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-tag" style="position: absolute;left:50px" ></i>
+			      
+		          <span>标签</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/pdf " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-file-pdf" style="position: absolute;left:50px" ></i>
+			      
+		          <span>PDF</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="javascript:;">
+			
+				<i class="fa-fw fas fa-heartbeat"></i>
+			
+			清单
+			<span class="m-icon"><i class="fas fa-chevron-right"></i></span>
+		</a>
+            <ul  style="background:  ;" >
+              
+                <li>
+
+                  <a href="/List/music " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-music" style="position: absolute;left:50px" ></i>
+			      
+		          <span>音乐</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/List/galleries " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-image" style="position: absolute;left:50px" ></i>
+			      
+		          <span>相册</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a href="/List/movies " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-film" style="position: absolute;left:50px" ></i>
+			      
+		          <span>视频</span>
+                  </a>
+                </li>
+              
+                <li>
+
+                  <a target="_blank" rel="noopener" href="https://github.com/bingshanyishu/free-programming-books-zh_CN " style="margin-left:75px">
+				  
+				   <i class="fa fas fa-book" style="position: absolute;left:50px" ></i>
+			      
+		          <span>书籍</span>
+                  </a>
+                </li>
+              
+            </ul>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-envelope"></i>
+			
+			留言
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tools" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-paper-plane"></i>
+			
+			导航
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-link"></i>
+			
+			友链
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/bingshanyishu/" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/bingshanyishu/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/posts/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Ajax概述，封装以及联合模板引擎进行数据交互</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        background-color: white;
+        width: 345px;
+        padding-left: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+    
+    #toc-content {
+        height: calc(100vh - 300px);
+        overflow: scroll;
+
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+        bottom: 120px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                <span class="chip bg-color">前端</span>
+                            </a>
+                        
+                            <a href="/tags/Ajax/">
+                                <span class="chip bg-color">Ajax</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                技能之树
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-19
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-03-19
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    24 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="Ajax概述，封装以及联合模板引擎进行数据交互"><a href="#Ajax概述，封装以及联合模板引擎进行数据交互" class="headerlink" title="Ajax概述，封装以及联合模板引擎进行数据交互"></a>Ajax概述，封装以及联合模板引擎进行数据交互</h1><p>博客园主页：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/bingshanyishu">博客园主页-冰山一树Sankey</a><br>CSDN主页：<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_59464010">CSDN主页-冰山一树Sankey</a></p>
+<p>更多资料可参考<a target="_blank" rel="noopener" href="https://www.imooc.com/wiki/ajaxlesson/ajaxintro.html">Ajax 介绍篇丨慕课网教程 (imooc.com)</a></p>
+<h2 id="一-Ajax概述"><a href="#一-Ajax概述" class="headerlink" title="一. Ajax概述"></a>一. Ajax概述</h2><p>在网站中存在以下问题：</p>
+<ul>
+<li>网速慢的情况下，页面加载时间长，用户只能等待</li>
+<li>表单提交后，如果一项内容不合格，需要重新填写所有表单内容</li>
+<li>页面跳转，重新加载页面，造成资源浪费，增加用户等待时间</li>
+</ul>
+<p>于是Ajax诞生了，Ajax：标准读音 [ˈeɪˌdʒæks] ，中文音译：阿贾克斯</p>
+<p>它是浏览器提供的一套方法，可以实现页面无刷新更新数据，提高用户浏览网站应用的体验。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/%E5%BD%95%E5%88%B6_2022_03_17_21_37_32_165.gif" alt="录制_2022_03_17_21_37_32_165"></p>
+<h2 id="二-Ajax运行环境及实现"><a href="#二-Ajax运行环境及实现" class="headerlink" title="二. Ajax运行环境及实现"></a>二. Ajax运行环境及实现</h2><h3 id="2-1-Ajax运行环境"><a href="#2-1-Ajax运行环境" class="headerlink" title="2.1 Ajax运行环境"></a>2.1 Ajax运行环境</h3><p>Ajax 相当于浏览器发送请求与接收响应的代理人，以实现在不影响用户浏览页面的情况下，局部更新页面数据，从而提高用户体验。在浏览器端与服务器端进行请求响应是不可以控制的，但使用Ajax后，开发人员人员可控制其过程。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220317223015626.png" alt="image-20220317223015626"></p>
+<p>那如何实现Ajax呢？</p>
+<ol>
+<li>创建 Ajax 对象</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">var xhr = new XMLHttpRequest();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li>告诉 Ajax 请求地址以及请求方式</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">xhr.open('get', 'http://www.example.com');<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="3">
+<li>发送请求</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">xhr.send();<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="4">
+<li>获取服务器端给与客户端的响应数据</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">xhr.onload = function () {
      console.log(xhr.responseText);
- }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><strong>因为Ajax 技术需要运行在网站环境中才能生效，下面使用Node创建的服务器作为网站服务器。</strong></p><p>手写在创建一个文件夹server，在其根目录下再创建public，使用npm安装<strong>express和body-parser</strong>，其<strong>package.jion</strong>文件如下</p><pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
+ }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p><strong>因为Ajax 技术需要运行在网站环境中才能生效，下面使用Node创建的服务器作为网站服务器。</strong></p>
+<p>手写在创建一个文件夹server，在其根目录下再创建public，使用npm安装<strong>express和body-parser</strong>，其<strong>package.jion</strong>文件如下</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">{</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"code"</span><span class="token punctuation">,</span>
   <span class="token property">"version"</span><span class="token operator">:</span> <span class="token string">"1.0.0"</span><span class="token punctuation">,</span>
   <span class="token property">"description"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
@@ -14,7 +1153,11 @@
     <span class="token property">"body-parser"</span><span class="token operator">:</span> <span class="token string">"^1.18.3"</span><span class="token punctuation">,</span>
     <span class="token property">"express"</span><span class="token operator">:</span> <span class="token string">"^4.16.4"</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>然后再在根目录下创建<strong>app.js</strong>文件，这里编写服务端代码</p><h3 id="2-2-传递get请求参数"><a href="#2-2-传递get请求参数" class="headerlink" title="2.2 传递get请求参数"></a>2.2 传递get请求参数</h3><p>在public中新建<code>传递get请求参数.html</code>文件</p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后再在根目录下创建<strong>app.js</strong>文件，这里编写服务端代码</p>
+<h3 id="2-2-传递get请求参数"><a href="#2-2-传递get请求参数" class="headerlink" title="2.2 传递get请求参数"></a>2.2 传递get请求参数</h3><p>在public中新建<code>传递get请求参数.html</code>文件</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -57,7 +1200,10 @@
 		<span class="token punctuation">}</span>
 	</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在服务的<code>app.js</code>，添加</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 引入express框架</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在服务的<code>app.js</code>，添加</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 引入express框架</span>
 <span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 路径处理模块</span>
 <span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -74,11 +1220,25 @@ app<span class="token punctuation">.</span><span class="token function">get</spa
     <span class="token comment">//req.query得到json字符串</span>
 	res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">这里放在app<span class="token punctuation">.</span>js的最后，
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">这里放在app<span class="token punctuation">.</span>js的最后，
 <span class="token comment">// 监听端口</span>
 app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 控制台提示输出</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'服务器启动成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在server下调用命令行启动nodejs服务器，为了方便调试，可使用</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">nodemon app<span class="token punctuation">.</span>js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>然后在浏览器打开<code>http://localhost:4000/传递get请求参数.html</code>,输入数据后，可返回输入值。</p><p><strong>解释下这里的过程</strong>： 用get的请求方法把输入的数据从浏览器端<strong>发送</strong>到服务端，服务端再把得到的数据再<strong>返回</strong>到浏览器端进行输出，当然这里为了测试，从服务端发送到浏览器端的数据也可以是<strong>其他内容</strong></p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220317231137737.png" alt="image-20220317231137737"></p><p>可以看到这里的请求的url是域名+<code>?key=value&amp;key=value</code>的形式以及请求方法为<code>get</code></p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220317231737308.png" alt="image-20220317231737308"></p><h3 id="2-3-传递post请求参数"><a href="#2-3-传递post请求参数" class="headerlink" title="2.3 传递post请求参数"></a>2.3 传递post请求参数</h3><p>传递post请求参数有两种方式，第一种格式和get相同，传递的数据格式为<code>key=value&amp;key=value</code></p><p>在public中新建<code>传递post请求参数.html</code>文件</p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'服务器启动成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在server下调用命令行启动nodejs服务器，为了方便调试，可使用</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">nodemon app<span class="token punctuation">.</span>js<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后在浏览器打开<code>http://localhost:4000/传递get请求参数.html</code>,输入数据后，可返回输入值。</p>
+<p><strong>解释下这里的过程</strong>： 用get的请求方法把输入的数据从浏览器端<strong>发送</strong>到服务端，服务端再把得到的数据再<strong>返回</strong>到浏览器端进行输出，当然这里为了测试，从服务端发送到浏览器端的数据也可以是<strong>其他内容</strong></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220317231137737.png" alt="image-20220317231137737"></p>
+<p>可以看到这里的请求的url是域名+<code>?key=value&amp;key=value</code>的形式以及请求方法为<code>get</code></p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220317231737308.png" alt="image-20220317231737308"></p>
+<h3 id="2-3-传递post请求参数"><a href="#2-3-传递post请求参数" class="headerlink" title="2.3 传递post请求参数"></a>2.3 传递post请求参数</h3><p>传递post请求参数有两种方式，第一种格式和get相同，传递的数据格式为<code>key=value&amp;key=value</code></p>
+<p>在public中新建<code>传递post请求参数.html</code>文件</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -123,13 +1283,29 @@ console<span class="token punctuation">.</span><span class="token function">log<
 		<span class="token punctuation">}</span>
 	</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在原app.js的基础上再添加</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//解析传递的post数据，格式为</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在原app.js的基础上再添加</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//解析传递的post数据，格式为</span>
 <span class="token keyword">const</span> bodyParser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'body-parser'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">urlencoded</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 传递post请求参数</span>
 app<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/post'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 	res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>打开浏览器中输入<code>http://localhost:3000/post请求参数.html</code>, 打开浏览器调试，点击网络，输入数据后，可以得到post，请求url以及请求方法</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318153531163.png" alt="image-20220318153531163"></p><p>这里的表单数据为输入的值，说明数据传递成功。</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318153805465.png" alt="image-20220318153805465"></p><p>第二种传递的格式为json数据，主要区别在于<code>xhr.setRequestHeader('Content-Type', 'application/json');</code>，以及服务端的app.use(bodyParser.json());具体看下面的代码</p><blockquote><p>注意：get 请求是不能提交 json 对象数据格式的，传统网站的表单提交也是不支持 json 对象数据格式的。</p></blockquote><p>在public中新建<code>向服务器端传递JSON格式的请求参数.html</code>文件</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>打开浏览器中输入<code>http://localhost:3000/post请求参数.html</code>,    打开浏览器调试，点击网络，输入数据后，可以得到post，请求url以及请求方法</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318153531163.png" alt="image-20220318153531163"></p>
+<p>这里的表单数据为输入的值，说明数据传递成功。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318153805465.png" alt="image-20220318153805465"></p>
+<p>第二种传递的格式为json数据，主要区别在于<code>xhr.setRequestHeader('Content-Type', 'application/json');</code>，以及服务端的app.use(bodyParser.json());具体看下面的代码</p>
+<blockquote>
+<p>注意：get 请求是不能提交 json 对象数据格式的，传统网站的表单提交也是不支持 json 对象数据格式的。</p>
+</blockquote>
+<p>在public中新建<code>向服务器端传递JSON格式的请求参数.html</code>文件</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
 <span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string">"en"</span><span class="token operator">&gt;</span>
 <span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
 	<span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token operator">&gt;</span>
@@ -153,23 +1329,63 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
         <span class="token punctuation">}</span>
 	<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在原app.js的基础上再添加</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//将app.use(bodyParser.urlencoded())改为app.use(bodyParser.json());</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在原app.js的基础上再添加</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">//将app.use(bodyParser.urlencoded())改为app.use(bodyParser.json());</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>bodyParser<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">//向服务器端传递JSON格式的请求参数</span>
 app<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/json'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 	res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>注意：还需要将<code>app.use(bodyParser.urlencoded());</code>改为<code>app.use(bodyParser.json());</code></p><h3 id="2-5-获取服务端响应"><a href="#2-5-获取服务端响应" class="headerlink" title="2.5 获取服务端响应"></a>2.5 获取服务端响应</h3><p>在说明之前，先来介绍一个概念——报文</p><p>在 HTTP 请求和响应的过程中传递的数据块就叫报文，包括要传送的数据和一些附加信息，这些数据和信息要遵守规定好的格式。</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318154706440.png" alt="image-20220318154706440"></p><p>上面的get与post请求，我们均是使用onload来获取服务端的报文，但也可以通过另外的方法来获取：</p><p>在创建ajax对象，配置ajax对象，发送请求，以及接收完服务器端响应报文，这个过程中的每一个步骤都会对应一个数值，这个数值就是ajax状态码。使用<strong>onreadystatechange</strong> <strong>事件</strong>，可以检测状态码的变化，当状态码为 4 时就可以通过 xhr.responseText 获取服务器端的响应数据。</p><pre class="line-numbers language-none"><code class="language-none">0：请求未初始化(还没有调用open())
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：还需要将<code>app.use(bodyParser.urlencoded());</code>改为<code>app.use(bodyParser.json());</code></p>
+<h3 id="2-5-获取服务端响应"><a href="#2-5-获取服务端响应" class="headerlink" title="2.5 获取服务端响应"></a>2.5 获取服务端响应</h3><p>在说明之前，先来介绍一个概念——报文</p>
+<p>在 HTTP 请求和响应的过程中传递的数据块就叫报文，包括要传送的数据和一些附加信息，这些数据和信息要遵守规定好的格式。</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318154706440.png" alt="image-20220318154706440"></p>
+<p>上面的get与post请求，我们均是使用onload来获取服务端的报文，但也可以通过另外的方法来获取：</p>
+<p>在创建ajax对象，配置ajax对象，发送请求，以及接收完服务器端响应报文，这个过程中的每一个步骤都会对应一个数值，这个数值就是ajax状态码。使用<strong>onreadystatechange</strong> <strong>事件</strong>，可以检测状态码的变化，当状态码为 4 时就可以通过 xhr.responseText 获取服务器端的响应数据。</p>
+<pre class="line-numbers language-none"><code class="language-none">0：请求未初始化(还没有调用open())
 1：请求已经建立，但是还没有发送(还没有调用send())
 2：请求已经发送
 3：请求正在处理中，通常响应中已经有部分数据可以用了
-4：响应已经完成，可以获取并使用服务器的响应了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>即下面方法可onload方法等效</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 当Ajax状态码发生变化时</span>
+4：响应已经完成，可以获取并使用服务器的响应了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>即下面方法可onload方法等效</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 当Ajax状态码发生变化时</span>
  xhr<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
      <span class="token comment">// 判断当Ajax状态码为4时</span>
      <span class="token keyword">if</span> <span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
          <span class="token comment">// 获取服务器端的响应数据</span>
          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>responseText<span class="token punctuation">)</span><span class="token punctuation">;</span>
      <span class="token punctuation">}</span>
- <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="2-4-Ajax错误处理"><a href="#2-4-Ajax错误处理" class="headerlink" title="2.4 Ajax错误处理"></a>2.4 Ajax错误处理</h3><ul><li>Ajax状态码: 表示Ajax请求的过程状态 ajax对象返回的</li><li>Http状态码: 表示请求的处理结果 是服务器端返回的</li></ul><ol><li>网络畅通，服务器端能接收到请求，服务器端返回的结果不是预期结果。</li></ol><p>可以判断服务器端返回的状态码，分别进行处理。xhr.status 获取http状态码</p><ol start="2"><li>网络畅通，服务器端没有接收到请求，返回404状态码。</li></ol><p>检查请求地址是否错误。</p><ol start="3"><li>网络畅通，服务器端能接收到请求，服务器端返回500状态码。</li></ol><p>服务器端错误，找后端程序员进行沟通。</p><ol start="4"><li>网络中断，请求无法发送到服务器端。</li></ol><p>会触发xhr对象下面的onerror事件，在onerror事件处理函数中对错误进行处理。</p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+ <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h3 id="2-4-Ajax错误处理"><a href="#2-4-Ajax错误处理" class="headerlink" title="2.4 Ajax错误处理"></a>2.4 Ajax错误处理</h3><ul>
+<li>Ajax状态码: 表示Ajax请求的过程状态 ajax对象返回的</li>
+<li>Http状态码: 表示请求的处理结果 是服务器端返回的</li>
+</ul>
+<ol>
+<li>网络畅通，服务器端能接收到请求，服务器端返回的结果不是预期结果。</li>
+</ol>
+<p>可以判断服务器端返回的状态码，分别进行处理。xhr.status 获取http状态码</p>
+<ol start="2">
+<li>网络畅通，服务器端没有接收到请求，返回404状态码。</li>
+</ol>
+<p>检查请求地址是否错误。</p>
+<ol start="3">
+<li>网络畅通，服务器端能接收到请求，服务器端返回500状态码。</li>
+</ol>
+<p>服务器端错误，找后端程序员进行沟通。</p>
+<ol start="4">
+<li>网络中断，请求无法发送到服务器端。</li>
+</ol>
+<p>会触发xhr对象下面的onerror事件，在onerror事件处理函数中对错误进行处理。</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -207,10 +1423,18 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
 		<span class="token comment">// Http状态码: 表示请求的处理结果 是服务器端返回的</span>
 	</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>服务端app.js</p><pre class="line-numbers language-none"><code class="language-none">app.get('/error', (req, res) =&gt; {
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>服务端app.js</p>
+<pre class="line-numbers language-none"><code class="language-none">app.get('/error', (req, res) =&gt; {
 	//console.log(abc);
 	res.status(400).send('not ok');
-});<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="三-Ajax封装"><a href="#三-Ajax封装" class="headerlink" title="三. Ajax封装"></a>三. Ajax封装</h2><p>发送一次请求代码过多，发送多次请求代码冗余且重复。我们可以将请求代码封装到函数中，发请求时调用函数即可。</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">ajax</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+});<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="三-Ajax封装"><a href="#三-Ajax封装" class="headerlink" title="三. Ajax封装"></a>三. Ajax封装</h2><p>发送一次请求代码过多，发送多次请求代码冗余且重复。我们可以将请求代码封装到函数中，发请求时调用函数即可。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">ajax</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 	<span class="token comment">// 默认值</span>
 	<span class="token keyword">var</span> defaults <span class="token operator">=</span> <span class="token punctuation">{</span>
 		type<span class="token operator">:</span> <span class="token string">'get'</span><span class="token punctuation">,</span>
@@ -284,11 +1508,50 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
 		<span class="token comment">// 调用失败回调函数并且将xhr对象传递给回调函数</span>
 		defaults<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>xhr<span class="token punctuation">)</span><span class="token punctuation">;</span>
 	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="四-模板引擎"><a href="#四-模板引擎" class="headerlink" title="四. 模板引擎"></a>四. 模板引擎</h2><h3 id="4-1-下载"><a href="#4-1-下载" class="headerlink" title="4.1 下载"></a>4.1 下载</h3><p>使用模板引擎提供的模板语法，可以将数据和 HTML 拼接起来。官方地址： <a target="_blank" rel="noopener" href="https://aui.github.io/art-template/zh-cn/index.html">https://aui.github.io/art-template/zh-cn/index.html</a></p><p>先去下载art-template文件</p><p>进入官网，点击Docs</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318160106408.png" alt="image-20220318160106408"></p><p>然后点击<strong>安装</strong>，将temlate-web.js另存到本地就下载好了</p><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318160147295.png" alt="image-20220318160147295"></p><h3 id="4-2-使用步骤"><a href="#4-2-使用步骤" class="headerlink" title="4.2 使用步骤"></a>4.2 使用步骤</h3><ol><li>下载 art-template 模板引擎库文件并在 HTML 页面中引入库文件</li></ol><pre class="line-numbers language-none"><code class="language-none">&lt;script src="./js/template-web.js"&gt;&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="2"><li>准备 art-template 模板</li></ol><pre class="line-numbers language-none"><code class="language-none">&lt;script id="tpl" type="text/html"&gt;
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="四-模板引擎"><a href="#四-模板引擎" class="headerlink" title="四. 模板引擎"></a>四. 模板引擎</h2><h3 id="4-1-下载"><a href="#4-1-下载" class="headerlink" title="4.1 下载"></a>4.1 下载</h3><p>使用模板引擎提供的模板语法，可以将数据和 HTML 拼接起来。官方地址： <a target="_blank" rel="noopener" href="https://aui.github.io/art-template/zh-cn/index.html">https://aui.github.io/art-template/zh-cn/index.html</a></p>
+<p>先去下载art-template文件</p>
+<p>进入官网，点击Docs</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318160106408.png" alt="image-20220318160106408"></p>
+<p>然后点击<strong>安装</strong>，将temlate-web.js另存到本地就下载好了</p>
+<p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/image-20220318160147295.png" alt="image-20220318160147295"></p>
+<h3 id="4-2-使用步骤"><a href="#4-2-使用步骤" class="headerlink" title="4.2 使用步骤"></a>4.2 使用步骤</h3><ol>
+<li>下载 art-template 模板引擎库文件并在 HTML 页面中引入库文件</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">&lt;script src="./js/template-web.js"&gt;&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li>准备 art-template 模板</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">&lt;script id="tpl" type="text/html"&gt;
      &lt;div class="box"&gt;&lt;/div&gt;
- &lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><ol start="3"><li>告诉模板引擎将哪一个模板和哪个数据进行拼接</li></ol><pre class="line-numbers language-none"><code class="language-none">var html = template('tpl', {username: 'zhangsan', age: '20'});<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="4"><li>将拼接好的html字符串添加到页面中</li></ol><pre class="line-numbers language-none"><code class="language-none">document.getElementById('container').innerHTML = html;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ol start="5"><li>通过模板语法告诉模板引擎，数据和html字符串要如何拼接</li></ol><pre class="line-numbers language-none"><code class="language-none">&lt;script id="tpl" type="text/html"&gt;
+ &lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li>告诉模板引擎将哪一个模板和哪个数据进行拼接</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">var html = template('tpl', {username: 'zhangsan', age: '20'});<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="4">
+<li>将拼接好的html字符串添加到页面中</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">document.getElementById('container').innerHTML = html;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="5">
+<li>通过模板语法告诉模板引擎，数据和html字符串要如何拼接</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">&lt;script id="tpl" type="text/html"&gt;
      &lt;div class="box"&gt; {{ username }} &lt;/div&gt;
- &lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="4-3-案例"><a href="#4-3-案例" class="headerlink" title="4.3 案例"></a>4.3 案例</h3><p>下面介绍三个案例说明如何使用模板引擎，一起利用Ajax进行数据的交互。</p><p>所有服务端均在app.js中。</p><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 引入express框架</span>
+ &lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="4-3-案例"><a href="#4-3-案例" class="headerlink" title="4.3 案例"></a>4.3 案例</h3><p>下面介绍三个案例说明如何使用模板引擎，一起利用Ajax进行数据的交互。</p>
+<p>所有服务端均在app.js中。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 引入express框架</span>
 <span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 路径处理模块</span>
 <span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -455,7 +1718,13 @@ app<span class="token punctuation">.</span><span class="token function">get</spa
 <span class="token comment">// 监听端口</span>
 app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 控制台提示输出</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'服务器启动成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h4 id="4-3-1-验证邮箱地址唯一性"><a href="#4-3-1-验证邮箱地址唯一性" class="headerlink" title="4.3.1 验证邮箱地址唯一性"></a>4.3.1 验证邮箱地址唯一性</h4><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/%E9%AA%8C%E8%AF%81%E9%82%AE%E7%AE%B1%E5%94%AF%E4%B8%80%E6%80%A7.gif" alt="验证邮箱唯一性"></p><p>在public文件夹下面新建<code>验证邮箱地址唯一性.html</code></p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'服务器启动成功'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h4 id="4-3-1-验证邮箱地址唯一性"><a href="#4-3-1-验证邮箱地址唯一性" class="headerlink" title="4.3.1 验证邮箱地址唯一性"></a>4.3.1 验证邮箱地址唯一性</h4><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/%E9%AA%8C%E8%AF%81%E9%82%AE%E7%AE%B1%E5%94%AF%E4%B8%80%E6%80%A7.gif" alt="验证邮箱唯一性"></p>
+<p>在public文件夹下面新建<code>验证邮箱地址唯一性.html</code></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -523,7 +1792,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
 		<span class="token punctuation">}</span>
 	</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>运行app.js，然后在浏览器中输入<code>http://localhost:3000/验证邮箱地址唯一性.html</code></p><h4 id="4-3-2-搜索框内容自动提示"><a href="#4-3-2-搜索框内容自动提示" class="headerlink" title="4.3.2 搜索框内容自动提示"></a>4.3.2 搜索框内容自动提示</h4><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/%E6%90%9C%E7%B4%A2%E6%A1%86%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA.gif" alt="搜索框内容自动提示"></p><p>在public文件夹下面新建<code>搜索框内容自动提示.html</code></p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行app.js，然后在浏览器中输入<code>http://localhost:3000/验证邮箱地址唯一性.html</code></p>
+<h4 id="4-3-2-搜索框内容自动提示"><a href="#4-3-2-搜索框内容自动提示" class="headerlink" title="4.3.2 搜索框内容自动提示"></a>4.3.2 搜索框内容自动提示</h4><p><img src="https://gitee.com/Omnivore_zhang/cloud-image/raw/master/ajax/%E6%90%9C%E7%B4%A2%E6%A1%86%E5%86%85%E5%AE%B9%E8%87%AA%E5%8A%A8%E6%8F%90%E7%A4%BA.gif" alt="搜索框内容自动提示"></p>
+<p>在public文件夹下面新建<code>搜索框内容自动提示.html</code></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -599,7 +1873,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
 		<span class="token punctuation">}</span>
 	</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>运行app.js，然后在浏览器中输入<code>http://localhost:3000/搜索框内容自动提示.html</code></p><h4 id="4-3-3-省市区联动"><a href="#4-3-3-省市区联动" class="headerlink" title="4.3.3 省市区联动"></a>4.3.3 省市区联动</h4><p><img src="C:/Users/27532/Desktop/省市区三级联动.gif" alt="省市区三级联动"></p><p>在public文件夹下面新建<code>省市区联动.html</code></p><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行app.js，然后在浏览器中输入<code>http://localhost:3000/搜索框内容自动提示.html</code></p>
+<h4 id="4-3-3-省市区联动"><a href="#4-3-3-省市区联动" class="headerlink" title="4.3.3 省市区联动"></a>4.3.3 省市区联动</h4><p><img src="C:/Users/27532/Desktop/省市区三级联动.gif" alt="省市区三级联动"></p>
+<p>在public文件夹下面新建<code>省市区联动.html</code></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -711,4 +1990,1241 @@ console<span class="token punctuation">.</span><span class="token function">log<
 		<span class="token punctuation">}</span>
 	</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>运行app.js，然后在浏览器中输入<code>http://localhost:3000/省市区联动.html</code></p></div><hr><div class="reprint" id="reprint-statement"><div class="reprint__author"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-user">文章作者: </i></span><span class="reprint-info"><a href="/about" rel="external nofollow noreferrer">Sankey</a></span></div><div class="reprint__type"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-link">文章链接: </i></span><span class="reprint-info"><a href="https://bingshanyishu.github.io/posts/202203192248.html">https://bingshanyishu.github.io/posts/202203192248.html</a></span></div><div class="reprint__notice"><span class="reprint-meta" style="font-weight:700"><i class="fas fa-copyright">版权声明: </i></span><span class="reprint-info">本博客所有文章除特別声明外，均采用 <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a> 许可协议。转载请注明来源 <a href="/about" target="_blank">Sankey</a> !</span></div></div><script async defer>function navToReprintStatement(){$("html, body").animate({scrollTop:$("#reprint-statement").offset().top-80},800)}document.addEventListener("copy",(function(t){M.toast({html:'<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>'})}))</script><div class="tag_share" style="display:block"><div class="post-meta__tag-list" style="display:inline-block"><div class="article-tag"><a href="/tags/%E5%89%8D%E7%AB%AF/"><span class="chip bg-color">前端</span> </a><a href="/tags/Ajax/"><span class="chip bg-color">Ajax</span></a></div></div><div class="post_share" style="zoom:80%;width:fit-content;display:inline-block;float:right;margin:-.15rem 0"><link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css"><div id="article-share"><div class="social-share" data-sites="qq,qzone,wechat,weibo,twitter,facebook,google,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div><script src="/libs/share/js/social-share.min.js"></script></div></div></div><style>#reward{margin:40px 0;text-align:center}#reward .reward-link{font-size:1.4rem;line-height:38px}#reward .btn-floating:hover{box-shadow:0 6px 12px rgba(0,0,0,.2),0 5px 15px rgba(0,0,0,.2)}#rewardModal{width:320px;height:350px}#rewardModal .reward-title{margin:15px auto;padding-bottom:5px}#rewardModal .modal-content{padding:10px}#rewardModal .close{position:absolute;right:15px;top:15px;color:rgba(0,0,0,.5);font-size:1.3rem;line-height:20px;cursor:pointer}#rewardModal .close:hover{color:#ef5350;transform:scale(1.3);-moz-transform:scale(1.3);-webkit-transform:scale(1.3);-o-transform:scale(1.3)}#rewardModal .reward-tabs{margin:0 auto;width:210px}.reward-tabs .tabs{height:38px;margin:10px auto;padding-left:0}.reward-content ul{padding-left:0!important}.reward-tabs .tabs .tab{height:38px;line-height:38px}.reward-tabs .tab a{color:#fff;background-color:#ccc}.reward-tabs .tab a:hover{background-color:#ccc;color:#fff}.reward-tabs .wechat-tab .active{color:#fff!important;background-color:#22ab38!important}.reward-tabs .alipay-tab .active{color:#fff!important;background-color:#019fe8!important}.reward-tabs .reward-img{width:210px;height:210px}</style><div id="reward"><a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a><div id="rewardModal" class="modal"><div class="modal-content"><a class="close modal-close"><i class="fas fa-times"></i></a><h4 class="reward-title">你的赏识是我前进的动力</h4><div class="reward-content"><div class="reward-tabs"><ul class="tabs row"><li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li><li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li></ul><div id="alipay"><img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码"></div><div id="wechat"><img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码"></div></div></div></div></div></div><script>$((function(){$(".tabs").tabs()}))</script></div></div><style>.valine-card{margin:1.5rem auto}.valine-card .card-content{padding:20px 20px 5px 20px}#vcomments textarea{box-sizing:border-box;background:url(/medias/comment_bg.png) 100% 100% no-repeat}#vcomments p{margin:2px 2px 10px;font-size:1.05rem;line-height:1.78rem}#vcomments blockquote p{text-indent:.2rem}#vcomments a{padding:0 2px;color:#4cbf30;font-weight:500;text-decoration:none}#vcomments img{max-width:100%;height:auto;cursor:pointer}#vcomments ol li{list-style-type:decimal}#vcomments ol,ul{display:block;padding-left:2em;word-spacing:.05rem}#vcomments ul li,ol li{display:list-item;line-height:1.8rem;font-size:1rem}#vcomments ul li{list-style-type:disc}#vcomments ul ul li{list-style-type:circle}#vcomments table,td,th{padding:12px 13px;border:1px solid #dfe2e5}#vcomments table,td,th{border:0}table tr:nth-child(2n),thead{background-color:#fafafa}#vcomments table th{background-color:#f2f2f2;min-width:80px}#vcomments table td{min-width:80px}#vcomments h1{font-size:1.85rem;font-weight:700;line-height:2.2rem}#vcomments h2{font-size:1.65rem;font-weight:700;line-height:1.9rem}#vcomments h3{font-size:1.45rem;font-weight:700;line-height:1.7rem}#vcomments h4{font-size:1.25rem;font-weight:700;line-height:1.5rem}#vcomments h5{font-size:1.1rem;font-weight:700;line-height:1.4rem}#vcomments h6{font-size:1rem;line-height:1.3rem}#vcomments p{font-size:1rem;line-height:1.5rem}#vcomments hr{margin:12px 0;border:0;border-top:1px solid #ccc}#vcomments blockquote{margin:15px 0;border-left:5px solid #42b983;padding:1rem .8rem .3rem .8rem;color:#666;background-color:rgba(66,185,131,.1)}#vcomments pre{font-family:monospace,monospace;padding:1.2em;margin:.5em 0;background:#272822;overflow:auto;border-radius:.3em;tab-size:4}#vcomments code{font-family:monospace,monospace;padding:1px 3px;font-size:.92rem;color:#e96900;background-color:#f8f8f8;border-radius:2px}#vcomments pre code{font-family:monospace,monospace;padding:0;color:#e8eaf6;background-color:#272822}#vcomments pre[class*=language-]{padding:1.2em;margin:.5em 0}#vcomments code[class*=language-],pre[class*=language-]{color:#e8eaf6}#vcomments [type=checkbox]:not(:checked),[type=checkbox]:checked{position:inherit;margin-left:-1.3rem;margin-right:.4rem;margin-top:-1px;vertical-align:middle;left:unset;visibility:visible}#vcomments b,strong{font-weight:700}#vcomments dfn{font-style:italic}#vcomments small{font-size:85%}#vcomments cite{font-style:normal}#vcomments mark{background-color:#fcf8e3;padding:.2em}#vcomments table,td,th{padding:12px 13px;border:1px solid #dfe2e5}table tr:nth-child(2n),thead{background-color:#fafafa}#vcomments table th{background-color:#f2f2f2;min-width:80px}#vcomments table td{min-width:80px}#vcomments [type=checkbox]:not(:checked),[type=checkbox]:checked{position:inherit;margin-left:-1.3rem;margin-right:.4rem;margin-top:-1px;vertical-align:middle;left:unset;visibility:visible}.v[data-class="v"] .vwrap .vheader .vinput{width:32%;border-bottom:1px dashed #dedede}</style><div class="card valine-card" data-aos="fade-up"><div class="comment_headling" style="font-size:20px;font-weight:700;position:relative;padding-left:20px;top:15px;padding-bottom:5px"><i class="fas fa-comments fa-fw" aria-hidden="true"></i> <span>评论</span></div><div id="vcomments" class="card-content" style="display:grid"></div></div><script src="/libs/valine/av-min.js"></script><script src="/libs/valine/Valine.min.js"></script><script>let metaPlaceholder={nick:"昵称/QQ号(必填)",mail:"邮箱(必填)",link:"网址(https://)"};new Valine({el:"#vcomments",appId:"O6Nfnp9barE47aeEBeVKuovT-gzGzoHsz",appKey:"u70Bvi4E3jQAvDoMRiE5hg68",notify:!0,verify:!0,visitor:!0,avatar:"monsterid",pageSize:"10",lang:"zh-CN",placeholder:"留下你的足迹..",meta:["nick","mail","link"],recordIP:!0,enableQQ:"monsterid",requiredFields:["0C37D7C600365ABEF2AC7DABA61EF685"],master:["0C37D7C600365ABEF2AC7DABA61EF685"],friends:["eecb9504421356fecf5b24bbf460aa3c",""],tagMeta:["博主","小伙伴","访客"],metaPlaceholder:metaPlaceholder}),document.body.addEventListener("click",(function(e){if(e.target.classList.contains("vsubmit")){const t=document.querySelector("input[type=email]"),a=document.querySelector("input[name=nick]"),i=/^[A-Za-z0-9_-\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;if(!t.value||!a.value||!i.test(t.value)){const t='<div class="valert txt-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>',a=document.querySelector(".vmark");a.innerHTML=t,a.style.display="block",e.stopPropagation(),setTimeout((function(){a.style.display="none",a.innerHTML=""}),2500)}}}),!0)</script><article id="prenext-posts" class="prev-next articles"><div class="row article-row"><div class="article col s12 m6" data-aos="fade-up"><div class="article-badge left-badge text-color"><i class="fas fa-chevron-left"></i>&nbsp;上一篇</div><div class="card"><a href="/posts/202203192254.html"><div class="card-image"><img src="https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/posts/11.jpg" class="responsive-img" alt="如何在Ajax中使用FormData对象传递数据，$.ajax方法怎么使用"> <span class="card-title">如何在Ajax中使用FormData对象传递数据，$.ajax方法怎么使用</span></div></a><div class="card-content article-content"><div class="summary block-with-text">如何在Ajax中使用FormData对象传递数据，$.ajax方法怎么使用博客园主页：博客园主页-冰山一树SankeyCSDN主页：CSDN</div><div class="publish-info"><span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2022-03-19 </span><span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">技能之树</a></span></div></div><div class="card-action article-tags"><a href="/tags/Ajax/"><span class="chip bg-color">Ajax</span></a></div></div></div><div class="article col s12 m6" data-aos="fade-up"><div class="article-badge right-badge text-color">下一篇&nbsp;<i class="fas fa-chevron-right"></i></div><div class="card"><a href="/posts/202203122207.html"><div class="card-image"><img src="https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/posts/8.jpg" class="responsive-img" alt="CSS3新特性——新增选择器，2D/3D转换，动画"> <span class="card-title">CSS3新特性——新增选择器，2D/3D转换，动画</span></div></a><div class="card-content article-content"><div class="summary block-with-text">CSS3新增了属性选择器可以根据元素特定属性的来选择元素。 这样就可以不用借助于类或者id选择器。</div><div class="publish-info"><span class="publish-date"><i class="far fa-clock fa-fw icon-date"></i>2022-03-12 </span><span class="publish-author"><i class="fas fa-bookmark fa-fw icon-category"></i> <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">技能之树</a></span></div></div><div class="card-action article-tags"><a href="/tags/%E5%89%8D%E7%AB%AF/"><span class="chip bg-color">前端</span> </a><a href="/tags/CSS3/"><span class="chip bg-color">CSS3</span></a></div></div></div></div></article></div><script>$("#articleContent").on("copy",(function(e){if(void 0!==window.getSelection){var n=window.getSelection();if(!((""+n).length<Number.parseInt("120"))){var t=document.getElementsByTagName("body")[0],o=document.createElement("div");o.style.position="absolute",o.style.left="-99999px",t.appendChild(o),o.appendChild(n.getRangeAt(0).cloneContents()),"CODE"===n.getRangeAt(0).commonAncestorContainer.nodeName&&(o.innerHTML="<pre>"+o.innerHTML+"</pre>");var i=document.location.href;o.innerHTML+='<br />来源: 冰山一树Sankey<br />文章作者: Sankey<br />文章链接: <a href="'+i+'">'+i+"</a><br />本文章著作权归作者所有，任何形式的转载都请注明出处。",n.selectAllChildren(o),window.setTimeout((function(){t.removeChild(o)}),200)}}}))</script><script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script><script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script><script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script><script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script></div><div id="toc-aside" class="expanded col l3 hide-on-med-and-down"><div class="toc-widget card"><div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div><div id="toc-content"></div></div></div></div><div id="floating-toc-btn" class="hide-on-med-and-down"><a class="btn-floating btn-large bg-color"><i class="fas fa-list-ul"></i></a></div><script src="/libs/tocbot/tocbot.min.js"></script><script>$((function(){tocbot.init({tocSelector:"#toc-content",contentSelector:"#articleContent",headingsOffset:-(.4*$(window).height()-45),collapseDepth:Number("0"),headingSelector:"h2, h3, h4"});let t=0;$("#toc-content a").each((function(){$(this).attr("href","#toc-heading-"+ ++t)})),t=0,$("#articleContent").children("h2, h3, h4").each((function(){$(this).attr("id","toc-heading-"+ ++t)}));let e=parseInt(.4*$(window).height()-64),n=$(".toc-widget");$(window).scroll((function(){$(window).scrollTop()>e?n.addClass("toc-fixed"):n.removeClass("toc-fixed")}));let o=$("#toc-aside"),i=$("#main-content");$("#floating-toc-btn .btn-floating").click((function(){o.hasClass("expanded")?(o.removeClass("expanded").hide(),i.removeClass("l9")):(o.addClass("expanded").show(),i.addClass("l9")),function(t,e){let n=$("#"+t);if(0===n.length)return;let o=n.width();o+=o>=450?21:o>=350&&o<450?18:o>=300&&o<350?16:14,$("#"+e).width(o)}("artDetail","prenext-posts")}))}))</script></main><footer class="page-footer bg-color"><link rel="stylesheet" href="/libs/aplayer/APlayer.min.css"><style>.aplayer .aplayer-lrc p{display:none;font-size:12px;font-weight:700;line-height:16px!important}.aplayer .aplayer-lrc p.aplayer-lrc-current{display:none;font-size:15px;color:#42b983}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body{left:-66px!important}.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover{left:0!important}</style><div><div class="row"><meting-js class="col l8 offset-l2 m10 offset-m1 s12" server="netease" type="playlist" id="7262197380" fixed="true" autoplay theme="#42b983" loop order="random" preload="auto" volume="0.7" list-folded="true"></meting-js></div></div><script src="/libs/aplayer/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><div class="container row center-align" style="margin-bottom:15px!important"><div class="col s12 m8 l8 copy-right">Copyright&nbsp;&copy; <span id="year">2022</span> <span id="year">2022</span> <a href="/about" target="_blank">Sankey</a> |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a> |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a><br>&nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span class="white-color">77.5k</span>&nbsp;字 <span id="busuanzi_container_site_pv">|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv" class="white-color"></span>&nbsp;次 </span><span id="busuanzi_container_site_uv">|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv" class="white-color"></span>&nbsp;人</span><br><span id="sitetime">载入运行时间...</span><script>function siteTime(){var e=864e5,t=new Date,n=t.getFullYear(),o=t.getMonth()+1,r=t.getDate(),a=t.getHours(),i=t.getMinutes(),l=t.getSeconds(),m=Date.UTC("2022","1","26","0","0","0"),M=Date.UTC(n,o,r,a,i,l)-m,g=Math.floor(M/31536e6),d=Math.floor(M/e-365*g),s=Math.floor((M-(365*g+d)*e)/36e5),u=Math.floor((M-(365*g+d)*e-36e5*s)/6e4),T=Math.floor((M-(365*g+d)*e-36e5*s-6e4*u)/1e3);"2022"==n?(document.getElementById("year").innerHTML=n,document.getElementById("sitetime").innerHTML="本站已安全运行 "+d+" 天 "+s+" 小时 "+u+" 分钟 "+T+" 秒"):(document.getElementById("year").innerHTML="2022 - "+n,document.getElementById("sitetime").innerHTML="本站已安全运行 "+g+" 年 "+d+" 天 "+s+" 小时 "+u+" 分钟 "+T+" 秒")}setInterval(siteTime,1e3)</script><br></div><div class="col s12 m4 l4 social-link social-statis"><a href="https://github.com/bingshanyishu/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50"><i class="fab fa-github"></i> </a><a href="mailto:omnivorezs.163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50"><i class="fas fa-envelope-open"></i> </a><a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2753224850" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2753224850" data-position="top" data-delay="50"><i class="fab fa-qq"></i> </a><a href="https://space.bilibili.com/484432829?from=search&amp;seid=7339008425800110640" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili主页" data-position="top" data-delay="50"><i class="fa fa-bold"></i> </a><a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50"><i class="fas fa-rss"></i></a></div></div></footer><div class="progress-bar"></div><div id="searchModal" class="modal"><div class="modal-content"><div class="search-header"><span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span> <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input"></div><div id="searchResult"></div></div></div><script type="text/javascript">$((function(){!function(t,e,r){"use strict";$.ajax({url:t,dataType:"xml",success:function(t){var n=$("entry",t).map((function(){return{title:$("title",this).text(),content:$("content",this).text(),url:$("url",this).text()}})).get(),a=document.getElementById(e),s=document.getElementById(r);a.addEventListener("input",(function(){var t='<ul class="search-result-list">',e=this.value.trim().toLowerCase().split(/[\s\-]+/);s.innerHTML="",this.value.trim().length<=0||(n.forEach((function(r){var n=!0,a=r.title.trim().toLowerCase(),s=r.content.trim().replace(/<[^>]+>/g,"").toLowerCase(),i=r.url;i=0===i.indexOf("/")?r.url:"/"+i;var l=-1,c=-1,u=-1;if(""!==a&&""!==s&&e.forEach((function(t,e){l=a.indexOf(t),c=s.indexOf(t),l<0&&c<0?n=!1:(c<0&&(c=0),0===e&&(u=c))})),n){t+="<li><a href='"+i+"' class='search-result-title'>"+a+"</a>";var o=r.content.trim().replace(/<[^>]+>/g,"");if(u>=0){var h=u-20,f=u+80;h<0&&(h=0),0===h&&(f=100),f>o.length&&(f=o.length);var m=o.substr(h,f);e.forEach((function(t){var e=new RegExp(t,"gi");m=m.replace(e,'<em class="search-keyword">'+t+"</em>")})),t+='<p class="search-result">'+m+"...</p>"}t+="</li>"}})),t+="</ul>",s.innerHTML=t)}))}})}("/search.xml","searchInput","searchResult")}))</script><div id="backTop" class="top-scroll"><a class="btn-floating btn-large waves-effect waves-light" href="#!"><i class="fas fa-arrow-up"></i></a></div><script src="/libs/materialize/materialize.min.js"></script><script src="/libs/masonry/masonry.pkgd.min.js"></script><script src="/libs/aos/aos.js"></script><script src="/libs/scrollprogress/scrollProgress.min.js"></script><script src="/libs/lightGallery/js/lightgallery-all.min.js"></script><script src="/js/matery.js"></script><script>var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?aaa6c944b0ed07922901d7fc571a171d";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script src="/libs/others/clicklove.js" async></script><script async src="/libs/others/busuanzi.pure.mini.js"></script><script>("1"===localStorage.getItem("dark")||(new Date).getHours()>=22||(new Date).getHours()<7||matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add("dark")</script><a onclick="switchNightMode()" id="sma"><i class="fas fa-lightbulb" id="nightMode" aria-hidden="true"></i></a><script type="text/javascript">WIDGET={FID:"zLkJSQpqsh"}</script><script type="text/javascript">var windowWidth=$(window).width();windowWidth>768&&document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>')</script><script>!function(e,t,o,c,i,a,n){e.DaoVoiceObject=i,e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date,a=t.createElement(o),n=t.getElementsByTagName(o)[0],a.async=1,a.src=c,a.charset="utf-8",n.parentNode.insertBefore(a,n)}(window,document,"script",("https:"==document.location.protocol?"https:":"http:")+"//widget.daovoice.io/widget/6984b559.js","daovoice"),daovoice("init",{app_id:"80745d25"}),daovoice("update")</script><script type="text/javascript" color="0,0,255" pointcolor="0,0,255" opacity="0.7" zindex="-1" count="99" src="/libs/background/canvas-nest.js"></script><script type="text/javascript" size="150" alpha="0.6" zindex="-1" src="/libs/background/ribbon-refresh.min.js" async></script><script src="/libs/instantpage/instantpage.js" type="module"></script></body></html>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>运行app.js，然后在浏览器中输入<code>http://localhost:3000/省市区联动.html</code></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Sankey</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://bingshanyishu.github.io/posts/202203192248.html">https://bingshanyishu.github.io/posts/202203192248.html</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Sankey</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                    <span class="chip bg-color">前端</span>
+                                </a>
+                            
+                                <a href="/tags/Ajax/">
+                                    <span class="chip bg-color">Ajax</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="qq,qzone,wechat,weibo,twitter,facebook,google,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    .v[data-class="v"] .vwrap .vheader .vinput {
+      width: 32%;
+      border-bottom: 1px dashed #dedede;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+let metaPlaceholder = {"nick":"昵称/QQ号(必填)","mail":"邮箱(必填)","link":"网址(https://)"} ;
+//这里要换行
+new Valine({
+        el: '#vcomments',
+        appId: 'O6Nfnp9barE47aeEBeVKuovT-gzGzoHsz',
+        appKey: 'u70Bvi4E3jQAvDoMRiE5hg68',
+        notify: 'true' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'monsterid',
+        pageSize: '10',
+        lang: 'zh-CN',
+        placeholder: '留下你的足迹..',
+        meta: ["nick", "mail", "link"],
+        recordIP: 'true' === 'true',
+        enableQQ: 'monsterid',
+        requiredFields: ["0C37D7C600365ABEF2AC7DABA61EF685"],
+        master: ["0C37D7C600365ABEF2AC7DABA61EF685"],
+        friends: ["eecb9504421356fecf5b24bbf460aa3c", ""],
+        tagMeta: ["博主", "小伙伴", "访客"],
+        metaPlaceholder: metaPlaceholder,
+
+    });
+
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('vsubmit')) {
+            const email = document.querySelector('input[type=email]');
+            const nick = document.querySelector('input[name=nick]');
+            const reg = /^[A-Za-z0-9_-\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            if (!email.value || !nick.value || !reg.test(email.value)) {
+                const str = `<div class="valert txt-center"><div class="vtext">请填写正确的昵称和邮箱！</div></div>`;
+                const vmark = document.querySelector('.vmark');
+                vmark.innerHTML = str;
+                vmark.style.display = 'block';
+
+                e.stopPropagation();
+
+                setTimeout(function() {
+                    vmark.style.display = 'none';
+                    vmark.innerHTML = '';
+                }, 2500);
+            }
+        }
+        }, true);
+</script>
+
+
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/posts/202203192254.html">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/posts/11.jpg" class="responsive-img" alt="如何在Ajax中使用FormData对象传递数据，$.ajax方法怎么使用">
+                        
+                        <span class="card-title">如何在Ajax中使用FormData对象传递数据，$.ajax方法怎么使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            <!--  -->
+                            如何在Ajax中使用FormData对象传递数据，$.ajax方法怎么使用博客园主页：博客园主页-冰山一树SankeyCSDN主页：CSDN
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Ajax/">
+                        <span class="chip bg-color">Ajax</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/202203122207.html">
+                    <div class="card-image">
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/bingshanyishu/bingshanyishu.github.io/medias/posts/8.jpg" class="responsive-img" alt="CSS3新特性——新增选择器，2D/3D转换，动画">
+                        
+                        <span class="card-title">CSS3新特性——新增选择器，2D/3D转换，动画</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            CSS3新增了属性选择器可以根据元素特定属性的来选择元素。 这样就可以不用借助于类或者id选择器。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%8A%80%E8%83%BD%E4%B9%8B%E6%A0%91/" class="post-category">
+                                    技能之树
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/CSS3/">
+                        <span class="chip bg-color">CSS3</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 冰山一树Sankey<br />'
+            + '文章作者: Sankey<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color" >
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="7262197380"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022-2023</span>
+            
+            <span id="year">2022</span>
+            <a href="/about" target="_blank">Sankey</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">77.5k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2022";
+                    var startMonth = "1";
+                    var startDate = "26";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/bingshanyishu/" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:omnivorezs.163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2753224850" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2753224850" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+<!-- 添加b站链接 -->
+
+    <a href="https://space.bilibili.com/484432829?from=search&amp;seid=7339008425800110640" class="tooltipped" target="_blank" data-tooltip="访问我的bilibili主页" data-position="top" data-delay="50">
+        <i class="fa fa-bold"></i>
+    </a>
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 百度站长统计 -->
+<!-- <script>
+    var _hmt = _hmt || [];
+    (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?ddcef04d29d1ec50a8ab3ed9d9aa001e";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+    })();
+</script> -->
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?aaa6c944b0ed07922901d7fc571a171d";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+<!-- 深色模式按钮 -->
+    <script>
+        if (localStorage.getItem('dark') === '1') {
+        document.body.classList.add('dark');
+        }
+        else if (new Date().getHours() >= 22 || new Date().getHours() < 7) {
+        document.body.classList.add('dark');
+        } 
+        else if (matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+        }
+    </script>
+    <a onclick="switchNightMode()" id="sma">
+        <i class="fas fa-lightbulb" id="nightMode" aria-hidden="true"></i>
+    </a>
+
+    <!-- 天气接口控件   -->
+    
+        <script type="text/javascript">
+        WIDGET = {FID: 'zLkJSQpqsh'}
+        </script>
+    <!-- <script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"></script> -->
+
+    <script type="text/javascript">
+      var windowWidth = $(window).width();
+      if (windowWidth > 768) {
+          document.write('<script type="text/javascript" src="https://apip.weatherdt.com/float/static/js/r.js?v=1111"><\/script>');
+      }
+    </script>
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "80745d25"
+        });
+        daovoice('update');
+    </script>
+    
+
+	
+    
+    <script type="text/javascript" color="0,0,255"
+        pointColor="0,0,255" opacity='0.7'
+        zIndex="-1" count="99"
+        src="/libs/background/canvas-nest.js"></script>
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon-refresh.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- 雪花特效 -->
+    
+    <!-- 樱花效果 -->
+    
+  
+
+
+</body>
+
+</html>
